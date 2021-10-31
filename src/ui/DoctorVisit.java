@@ -5,7 +5,7 @@
  */
 package ui;
 
-import model.System;
+import model.SystemM;
 
 /**
  *
@@ -13,12 +13,12 @@ import model.System;
  */
 public class DoctorVisit extends javax.swing.JPanel {
     
-    System system;
+    SystemM system;
 
     /**
      * Creates new form DoctorVisit
      */
-    public DoctorVisit(System system) {
+    public DoctorVisit(SystemM system) {
         initComponents();
         this.system =  system;
     }
@@ -74,11 +74,11 @@ public class DoctorVisit extends javax.swing.JPanel {
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(260, 260, 260)
+                .addGap(310, 310, 310)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnCreateNewPatient, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnUpdateExistingPatient))
-                .addContainerGap(209, Short.MAX_VALUE))
+                    .addComponent(btnUpdateExistingPatient)
+                    .addComponent(btnCreateNewPatient, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(159, Short.MAX_VALUE))
         );
 
         jPanel2Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {btnCreateNewPatient, btnUpdateExistingPatient});
@@ -86,11 +86,11 @@ public class DoctorVisit extends javax.swing.JPanel {
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(151, 151, 151)
-                .addComponent(btnCreateNewPatient, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(65, 65, 65)
-                .addComponent(btnUpdateExistingPatient, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(230, Short.MAX_VALUE))
+                .addGap(130, 130, 130)
+                .addComponent(btnCreateNewPatient, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(57, 57, 57)
+                .addComponent(btnUpdateExistingPatient, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(285, Short.MAX_VALUE))
         );
 
         jPanel2Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {btnCreateNewPatient, btnUpdateExistingPatient});

@@ -39,4 +39,9 @@ public class Patient extends Person {
     public void setPatientId(int patientId) {
         this.patientId = patientId;
     }
+    
+    @Override
+    public String toString() {
+        return String.valueOf(patientId);
+    }
 }

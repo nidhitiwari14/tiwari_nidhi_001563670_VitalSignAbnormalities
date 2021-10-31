@@ -11,7 +11,7 @@ import java.time.format.DateTimeFormatter;
 import javax.swing.JOptionPane;
 import model.Encounter;
 import model.Patient;
-import model.System;
+import model.SystemM;
 import model.VitalSigns;
 
 /**
@@ -22,12 +22,12 @@ public class CreatePatient extends javax.swing.JPanel {
     
     public Boolean isFormValid = false;
     
-    System system;
+    SystemM system;
 
     /**
      * Creates new form CreateJPanel
      */
-    public CreatePatient(System system) {
+    public CreatePatient(SystemM system) {
         initComponents();
         this.system = system;
     }
@@ -52,7 +52,6 @@ public class CreatePatient extends javax.swing.JPanel {
         txtLastName = new javax.swing.JTextField();
         txtDOB = new javax.swing.JTextField();
         txtHouseNumber = new javax.swing.JTextField();
-        txtCommunity = new javax.swing.JTextField();
         txtCity = new javax.swing.JTextField();
         lblBP = new javax.swing.JLabel();
         lblHeartRate = new javax.swing.JLabel();
@@ -71,6 +70,7 @@ public class CreatePatient extends javax.swing.JPanel {
         lblHeartRateError = new javax.swing.JLabel();
         lblRespiratoryError = new javax.swing.JLabel();
         lblWeightError = new javax.swing.JLabel();
+        comboBoxCommunity = new javax.swing.JComboBox<>();
 
         lblCreateTitle.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
         lblCreateTitle.setText("Create Patient Details");
@@ -104,6 +104,16 @@ public class CreatePatient extends javax.swing.JPanel {
             }
         });
 
+        txtCity.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtCityFocusLost(evt);
+            }
+        });
+        txtCity.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtCityActionPerformed(evt);
+            }
+        });
         txtCity.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 txtCityKeyPressed(evt);
@@ -151,6 +161,12 @@ public class CreatePatient extends javax.swing.JPanel {
             }
         });
 
+        comboBoxCommunity.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                comboBoxCommunityActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -176,29 +192,35 @@ public class CreatePatient extends javax.swing.JPanel {
                         .addGap(80, 80, 80)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(txtFirstName)
-                                    .addComponent(txtLastName)
-                                    .addComponent(txtDOB)
-                                    .addComponent(txtHouseNumber)
-                                    .addComponent(txtCity)
-                                    .addComponent(txtBP)
-                                    .addComponent(txtHeartRate)
-                                    .addComponent(txtRespiratory)
-                                    .addComponent(txtWeight, javax.swing.GroupLayout.DEFAULT_SIZE, 196, Short.MAX_VALUE))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addComponent(comboBoxCommunity, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(txtFirstName, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(txtLastName, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(txtDOB, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(txtHouseNumber, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(txtBP, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(txtHeartRate, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(txtRespiratory, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(txtWeight, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 196, Short.MAX_VALUE))
                                 .addGap(54, 54, 54)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(lblLastNameError, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(lblDOBError, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(lblHouseNumberError, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(lblBPError)
-                                    .addComponent(lblHeartRateError)
-                                    .addComponent(lblRespiratoryError)
-                                    .addComponent(lblWeightError)
-                                    .addComponent(lblFirstNameError, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addComponent(txtCommunity, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnSave, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(72, Short.MAX_VALUE))
+                                    .addComponent(lblFirstNameError, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(lblDOBError, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(lblBPError, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(lblHeartRateError, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(lblWeightError, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(lblRespiratoryError, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(lblLastNameError, javax.swing.GroupLayout.DEFAULT_SIZE, 10, Short.MAX_VALUE)
+                                            .addComponent(lblHouseNumberError, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                        .addGap(202, 202, 202))))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(btnSave, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtCity, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(0, 0, Short.MAX_VALUE)))))
+                .addGap(14, 14, 14))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -209,52 +231,54 @@ public class CreatePatient extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblFirstName)
                     .addComponent(txtFirstName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblFirstNameError))
+                    .addComponent(lblFirstNameError, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(16, 16, 16)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblLastName)
-                    .addComponent(txtLastName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblLastNameError))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblLastNameError, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(lblLastName)
+                        .addComponent(txtLastName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(16, 16, 16)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblDOB)
                     .addComponent(txtDOB, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblDOBError))
+                    .addComponent(lblDOBError, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(21, 21, 21)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblHouseNumber)
                     .addComponent(txtHouseNumber, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblHouseNumberError))
-                .addGap(23, 23, 23)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblHouseNumberError, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(28, 28, 28)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lblCity)
                     .addComponent(txtCity, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(23, 23, 23)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGap(24, 24, 24)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblCommunity)
-                    .addComponent(txtCommunity, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(comboBoxCommunity, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblBP)
                     .addComponent(txtBP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblBPError))
+                    .addComponent(lblBPError, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(17, 17, 17)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblHeartRate)
                     .addComponent(txtHeartRate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblHeartRateError))
+                    .addComponent(lblHeartRateError, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(26, 26, 26)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblRespiratory)
                     .addComponent(txtRespiratory, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblRespiratoryError))
+                    .addComponent(lblRespiratoryError, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(29, 29, 29)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblWeight)
                     .addComponent(txtWeight, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblWeightError))
+                    .addComponent(lblWeightError, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addComponent(btnSave, javax.swing.GroupLayout.DEFAULT_SIZE, 35, Short.MAX_VALUE))
+                .addComponent(btnSave, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(22, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -281,9 +305,10 @@ public class CreatePatient extends javax.swing.JPanel {
             String houseNum = txtHouseNumber.getText();
             String firstName = txtFirstName.getText();
             String lastName = txtLastName.getText();
-            String community = txtCommunity.getText();
+            Object selectedcommunity = comboBoxCommunity.getSelectedItem();
+            String community = selectedcommunity.toString();
             String city = txtCity.getText();
-            LocalDate dob = localDate;           
+            LocalDate dob = localDate; 
             Patient patient = new Patient(
             firstName, 
             lastName, 
@@ -307,6 +332,8 @@ public class CreatePatient extends javax.swing.JPanel {
         if(isFormValid) {
             system.addPatient(patient);
             JOptionPane.showMessageDialog(this, "New patient Record Added"); 
+        } else {
+            JOptionPane.showMessageDialog(this, "Please enter valid values"); 
         }
     }//GEN-LAST:event_btnSaveActionPerformed
 
@@ -351,7 +378,7 @@ public class CreatePatient extends javax.swing.JPanel {
     }//GEN-LAST:event_txtLastNameKeyPressed
 
     private void txtCityKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCityKeyPressed
-
+        
     }//GEN-LAST:event_txtCityKeyPressed
 
     private void txtBPKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtBPKeyPressed
@@ -423,8 +450,54 @@ public class CreatePatient extends javax.swing.JPanel {
             isFormValid = true;
             lblWeightError.setText("");
             validateForm();
-        } 
+        }
     }//GEN-LAST:event_txtWeightKeyPressed
+    
+    private void setCommunityName() {
+        if(txtCity.getText().equalsIgnoreCase("Boston")) {
+            comboBoxCommunity.removeAllItems();
+            comboBoxCommunity.addItem("Dorchester");
+            comboBoxCommunity.addItem("Beacon Hill");
+            comboBoxCommunity.addItem("Allston");
+            comboBoxCommunity.addItem("Charlestown");
+            comboBoxCommunity.addItem("Chinatown");
+            comboBoxCommunity.addItem("Back Bay");
+        }
+        if(txtCity.getText().equalsIgnoreCase("Charlotte")) {
+            comboBoxCommunity.removeAllItems();
+            comboBoxCommunity.addItem("Uptown");
+            comboBoxCommunity.addItem("University City");
+            comboBoxCommunity.addItem("SouthPark");
+            comboBoxCommunity.addItem("Elizabeth");
+            comboBoxCommunity.addItem("Plaza-Midwood");
+        }
+        if(txtCity.getText().equalsIgnoreCase("San Diego")) {
+            comboBoxCommunity.removeAllItems();
+            comboBoxCommunity.addItem("Del Mar");
+            comboBoxCommunity.addItem("Caramel Valley");
+            comboBoxCommunity.addItem("Olivenhain");
+            comboBoxCommunity.addItem("Solana Beach");
+            comboBoxCommunity.addItem("Leucadia");
+        }
+        if(txtCity.getText().equalsIgnoreCase("New York")) {
+            comboBoxCommunity.removeAllItems();
+            comboBoxCommunity.addItem("Bronx CB 1");
+            comboBoxCommunity.addItem("Bronx CB 2");
+            comboBoxCommunity.addItem("Bronx CB 3");
+        }
+    }
+    
+    private void comboBoxCommunityActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboBoxCommunityActionPerformed
+        
+    }//GEN-LAST:event_comboBoxCommunityActionPerformed
+
+    private void txtCityActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCityActionPerformed
+        
+    }//GEN-LAST:event_txtCityActionPerformed
+
+    private void txtCityFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtCityFocusLost
+        setCommunityName();
+    }//GEN-LAST:event_txtCityFocusLost
     
     private void validateForm () {
         if((txtFirstName.getText().isEmpty())) {
@@ -439,9 +512,6 @@ public class CreatePatient extends javax.swing.JPanel {
         if((txtHouseNumber.getText().isEmpty())) {
             isFormValid = false;
         }
-        if((txtCommunity.getText().isEmpty())) {
-            isFormValid = false;
-        }
         if((txtCity.getText().isEmpty())) {
             isFormValid = false;
         }
@@ -449,6 +519,7 @@ public class CreatePatient extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnSave;
+    private javax.swing.JComboBox<String> comboBoxCommunity;
     private javax.swing.JLabel lblBP;
     private javax.swing.JLabel lblBPError;
     private javax.swing.JLabel lblCity;
@@ -470,7 +541,6 @@ public class CreatePatient extends javax.swing.JPanel {
     private javax.swing.JLabel lblWeightError;
     private javax.swing.JTextField txtBP;
     private javax.swing.JTextField txtCity;
-    private javax.swing.JTextField txtCommunity;
     private javax.swing.JTextField txtDOB;
     private javax.swing.JTextField txtFirstName;
     private javax.swing.JTextField txtHeartRate;

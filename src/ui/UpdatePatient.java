@@ -5,10 +5,11 @@
  */
 package ui;
 
+import java.text.SimpleDateFormat;
 import javax.swing.JOptionPane;
 import model.Encounter;
 import model.Patient;
-import model.System;
+import model.SystemM;
 import model.VitalSigns;
 
 /**
@@ -17,12 +18,14 @@ import model.VitalSigns;
  */
 public class UpdatePatient extends javax.swing.JPanel {
     
-    System system;
+    public Boolean isFormValid = false;
+    
+    SystemM system;
 
     /**
      * Creates new form UpdatePatient
      */
-    public UpdatePatient(System system) {
+    public UpdatePatient(SystemM system) {
         initComponents();
         this.system = system;
     }
@@ -57,12 +60,25 @@ public class UpdatePatient extends javax.swing.JPanel {
         lblFirstName = new javax.swing.JLabel();
         txtHouseNumber = new javax.swing.JTextField();
         lblLastName = new javax.swing.JLabel();
-        txtCommunity = new javax.swing.JTextField();
         lblPatientID = new javax.swing.JLabel();
         txtPatientId = new javax.swing.JTextField();
         btnSearch = new javax.swing.JButton();
+        lblDOBError = new javax.swing.JLabel();
+        lblFirstNameError = new javax.swing.JLabel();
+        lblLastNameError = new javax.swing.JLabel();
+        lblBPError = new javax.swing.JLabel();
+        lblHeartRateError = new javax.swing.JLabel();
+        lblRespiratoryError = new javax.swing.JLabel();
+        lblWeightError = new javax.swing.JLabel();
+        comboBoxCommunity = new javax.swing.JComboBox<>();
 
         lblDOB.setText("DOB");
+
+        txtCity.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtCityFocusLost(evt);
+            }
+        });
 
         lblHouseNumber.setText("House Number");
 
@@ -72,6 +88,32 @@ public class UpdatePatient extends javax.swing.JPanel {
 
         lblWeight.setText("Weight");
 
+        txtBP.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtBPKeyPressed(evt);
+            }
+        });
+
+        txtHeartRate.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtHeartRateKeyPressed(evt);
+            }
+        });
+
+        txtRespiratory.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtRespiratoryKeyPressed(evt);
+            }
+        });
+
+        txtWeight.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtWeightKeyPressed(evt);
+            }
+        });
+
+        btnSave.setBackground(new java.awt.Color(0, 153, 255));
+        btnSave.setFont(new java.awt.Font("Lucida Grande", 1, 14)); // NOI18N
         btnSave.setText("Update");
         btnSave.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -85,6 +127,18 @@ public class UpdatePatient extends javax.swing.JPanel {
 
         lblRespiratory.setText("Respiratory");
 
+        txtFirstName.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtFirstNameKeyPressed(evt);
+            }
+        });
+
+        txtLastName.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtLastNameKeyPressed(evt);
+            }
+        });
+
         lblCreateTitle.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
         lblCreateTitle.setText("Update Patient Details");
 
@@ -94,6 +148,8 @@ public class UpdatePatient extends javax.swing.JPanel {
 
         lblPatientID.setText("Enter Patient ID");
 
+        btnSearch.setBackground(new java.awt.Color(0, 102, 204));
+        btnSearch.setForeground(new java.awt.Color(255, 255, 255));
         btnSearch.setText("Search");
         btnSearch.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -115,31 +171,41 @@ public class UpdatePatient extends javax.swing.JPanel {
                         .addComponent(lblFirstName)
                         .addComponent(lblDOB)
                         .addComponent(lblHouseNumber)
-                        .addComponent(lblCommunity)
-                        .addComponent(lblCity)
-                        .addComponent(lblBP)
                         .addComponent(lblHeartRate)
                         .addComponent(lblRespiratory)
-                        .addComponent(lblWeight))
-                    .addComponent(txtPatientId, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(34, 34, 34)
+                        .addComponent(lblWeight)
+                        .addComponent(lblCommunity)
+                        .addComponent(lblCity)
+                        .addComponent(lblBP))
+                    .addComponent(txtPatientId, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnSearch)
-                    .addComponent(btnSave)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(txtFirstName)
-                        .addComponent(txtLastName)
-                        .addComponent(txtDOB)
-                        .addComponent(txtHouseNumber)
-                        .addComponent(txtCommunity)
-                        .addComponent(txtCity)
-                        .addComponent(txtBP)
-                        .addComponent(txtHeartRate)
-                        .addComponent(txtRespiratory)
-                        .addComponent(txtWeight, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(257, Short.MAX_VALUE))
+                    .addComponent(btnSave, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(comboBoxCommunity, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(txtFirstName, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtLastName, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtDOB, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtHouseNumber, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtCity, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtBP, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtHeartRate, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtRespiratory, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtWeight, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 196, Short.MAX_VALUE))
+                        .addGap(58, 58, 58)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(lblDOBError, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(lblFirstNameError, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(lblLastNameError, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(lblBPError, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(lblHeartRateError, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(lblRespiratoryError, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(lblWeightError, javax.swing.GroupLayout.DEFAULT_SIZE, 168, Short.MAX_VALUE))))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(298, Short.MAX_VALUE)
                 .addComponent(lblCreateTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(272, 272, 272))
         );
@@ -156,46 +222,53 @@ public class UpdatePatient extends javax.swing.JPanel {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblFirstName)
-                    .addComponent(txtFirstName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtFirstName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblFirstNameError))
                 .addGap(16, 16, 16)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblLastName)
-                    .addComponent(txtLastName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtLastName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblLastNameError))
                 .addGap(16, 16, 16)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblDOB)
-                    .addComponent(txtDOB, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtDOB, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblDOBError))
                 .addGap(21, 21, 21)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblHouseNumber)
                     .addComponent(txtHouseNumber, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(23, 23, 23)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblCommunity)
-                    .addComponent(txtCommunity, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addGap(22, 22, 22)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblCity)
                     .addComponent(txtCity, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(23, 23, 23)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblCommunity)
+                    .addComponent(comboBoxCommunity, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(28, 28, 28)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblBP)
-                    .addComponent(txtBP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtBP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblBPError))
                 .addGap(17, 17, 17)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblHeartRate)
-                    .addComponent(txtHeartRate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtHeartRate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblHeartRateError))
                 .addGap(26, 26, 26)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblRespiratory)
-                    .addComponent(txtRespiratory, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtRespiratory, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblRespiratoryError))
                 .addGap(29, 29, 29)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblWeight)
-                    .addComponent(txtWeight, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(39, 39, 39)
-                .addComponent(btnSave)
-                .addContainerGap(31, Short.MAX_VALUE))
+                    .addComponent(txtWeight, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblWeightError))
+                .addGap(36, 36, 36)
+                .addComponent(btnSave, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(21, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -205,14 +278,87 @@ public class UpdatePatient extends javax.swing.JPanel {
         txtFirstName.setText(String.valueOf( patient1.getFirstName()));
         txtLastName.setText(String.valueOf( patient1.getLastName()));
         txtDOB.setText(String.valueOf(patient1.getDateOfBirth().toString()));
-        txtCommunity.setText(String.valueOf(patient1.getResidence().getCommunityName()));
+        System.out.print("patient1.getResidence()  " + String.valueOf(patient1.getResidence().getCommunityName()));
+//        comboBoxCommunity.setSelectedItem(String.valueOf(patient1.getResidence().getCommunityName()));
+        comboBoxCommunity.setSelectedItem(patient1.getResidence().getCommunityName());
         txtHouseNumber.setText(String.valueOf(patient1.getResidence().getHouseNumber()));
         txtCity.setText(String.valueOf(patient1.getResidence().getCityName()));
+        setCommunityName();
     }//GEN-LAST:event_btnSearchActionPerformed
 
+    private void validateForm () {
+        if((txtFirstName.getText().isEmpty())) {
+            isFormValid = false;
+        }
+        if((txtLastName.getText().isEmpty())) {
+            isFormValid = false;
+        }
+        if((txtDOB.getText().isEmpty())) {
+            isFormValid = false;
+        }
+        if((txtHouseNumber.getText().isEmpty())) {
+            isFormValid = false;
+        }
+        if((txtCity.getText().isEmpty())) {
+            isFormValid = false;
+        }
+    }
+    
+        private void setCommunityName() {
+        if(txtCity.getText().equalsIgnoreCase("Boston")) {
+            comboBoxCommunity.removeAllItems();
+            comboBoxCommunity.addItem("Dorchester");
+            comboBoxCommunity.addItem("Beacon Hill");
+            comboBoxCommunity.addItem("Allston");
+            comboBoxCommunity.addItem("Charlestown");
+            comboBoxCommunity.addItem("Chinatown");
+            comboBoxCommunity.addItem("Back Bay");
+        }
+        if(txtCity.getText().equalsIgnoreCase("Charlotte")) {
+            comboBoxCommunity.removeAllItems();
+            comboBoxCommunity.addItem("Uptown");
+            comboBoxCommunity.addItem("University City");
+            comboBoxCommunity.addItem("SouthPark");
+            comboBoxCommunity.addItem("Elizabeth");
+            comboBoxCommunity.addItem("Plaza-Midwood");
+        }
+        if(txtCity.getText().equalsIgnoreCase("San Diego")) {
+            comboBoxCommunity.removeAllItems();
+            comboBoxCommunity.addItem("Del Mar");
+            comboBoxCommunity.addItem("Caramel Valley");
+            comboBoxCommunity.addItem("Olivenhain");
+            comboBoxCommunity.addItem("Solana Beach");
+            comboBoxCommunity.addItem("Leucadia");
+        }
+        if(txtCity.getText().equalsIgnoreCase("New York")) {
+            comboBoxCommunity.removeAllItems();
+            comboBoxCommunity.addItem("Bronx CB 1");
+            comboBoxCommunity.addItem("Bronx CB 2");
+            comboBoxCommunity.addItem("Bronx CB 3");
+        }
+    }
+        
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
+
         int patientID = getID();
         Patient patient1 = system.getPatientById(patientID);
+        
+        validateForm();
+        if (!txtDOB.getText().isEmpty()) {
+            SimpleDateFormat formatter = new SimpleDateFormat("yyyy-mm-dd");
+            try
+                {
+                    formatter.parse(txtDOB.getText());
+                    lblDOBError.setText("");
+                    isFormValid = true;
+                }
+	    
+                catch (Exception e)
+                {
+                    lblDOBError.setText("Date Format is Invalid");
+                    isFormValid = false;
+                }
+        }
 
         Encounter encounter = null;
         VitalSigns vitals = new VitalSigns();
@@ -227,10 +373,126 @@ public class UpdatePatient extends javax.swing.JPanel {
            vitals.setRespiratoryRate(Integer.parseInt(txtWeight.getText())); 
         }
         encounter = new Encounter(vitals);
-        patient1.getEncounterHistory().recordEncounter(encounter);
         
-        JOptionPane.showMessageDialog(this, "Vital info Updated");
+        if(isFormValid) {
+            patient1.getEncounterHistory().recordEncounter(encounter);
+            JOptionPane.showMessageDialog(this, "Vital info Updated");
+        } else {
+            JOptionPane.showMessageDialog(this, "Please enter valid values"); 
+        }
     }//GEN-LAST:event_btnSaveActionPerformed
+
+    private void txtFirstNameKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtFirstNameKeyPressed
+        validateForm();
+        char letterPressed = evt.getKeyChar();
+        if(Character.isDigit(letterPressed)){
+        isFormValid = false;
+        txtFirstName.setEditable(false);
+        lblFirstNameError.setText("Please enter letters only!");
+        validateForm();
+        }
+        else
+        {
+        txtFirstName.setEditable(true);
+        isFormValid = true;
+        lblFirstNameError.setText("");
+        validateForm();
+        }
+    }//GEN-LAST:event_txtFirstNameKeyPressed
+
+    private void txtLastNameKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtLastNameKeyPressed
+        validateForm();
+        char letterPressed = evt.getKeyChar();
+        if(Character.isDigit(letterPressed)){
+        isFormValid = false;
+        txtLastName.setEditable(false);
+        lblLastNameError.setText("Please enter letters only!");
+        validateForm();
+        }
+        else
+        {
+        txtLastName.setEditable(true);
+        isFormValid = true;
+        lblLastNameError.setText("");
+        validateForm();
+        }
+    }//GEN-LAST:event_txtLastNameKeyPressed
+
+    private void txtBPKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtBPKeyPressed
+        validateForm();
+        char NumPressed = evt.getKeyChar();
+        if(Character.isLetter(NumPressed)){
+            isFormValid = false;
+            txtBP.setEditable(false);
+            lblBPError.setText("Please enter number Only!");
+            validateForm();
+        }
+        else
+        {
+            txtBP.setEditable(true);
+            isFormValid = true;
+            lblBPError.setText("");
+            validateForm();
+        }
+    }//GEN-LAST:event_txtBPKeyPressed
+
+    private void txtHeartRateKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtHeartRateKeyPressed
+        validateForm();
+        char NumPressed = evt.getKeyChar();
+        if(Character.isLetter(NumPressed)){
+            isFormValid = false;
+            txtHeartRate.setEditable(false);
+            lblHeartRateError.setText("Please enter number Only!");
+            validateForm();
+        }
+        else
+        {
+            txtHeartRate.setEditable(true);
+            isFormValid = true;
+            lblHeartRateError.setText("");
+            validateForm();
+        }
+    }//GEN-LAST:event_txtHeartRateKeyPressed
+
+    private void txtRespiratoryKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtRespiratoryKeyPressed
+        validateForm();
+        char NumPressed = evt.getKeyChar();
+        if(Character.isLetter(NumPressed)){
+            isFormValid = false;
+            txtRespiratory.setEditable(false);
+            lblRespiratoryError.setText("Please enter number Only!");
+            validateForm();
+        }
+        else
+        {
+            txtRespiratory.setEditable(true);
+            isFormValid = true;
+            lblRespiratoryError.setText("");
+            validateForm();
+        }
+    }//GEN-LAST:event_txtRespiratoryKeyPressed
+
+    private void txtWeightKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtWeightKeyPressed
+        validateForm();
+        char NumPressed = evt.getKeyChar();
+        if(Character.isLetter(NumPressed)){
+            isFormValid = false;
+            txtWeight.setEditable(false);
+            lblWeightError.setText("Please enter number Only!");
+            validateForm();
+        }
+        else
+        {
+            txtWeight.setEditable(true);
+            isFormValid = true;
+            lblWeightError.setText("");
+            validateForm();
+        }
+    }//GEN-LAST:event_txtWeightKeyPressed
+
+    private void txtCityFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtCityFocusLost
+        setCommunityName();
+    }//GEN-LAST:event_txtCityFocusLost
 
     private int getID(){
 
@@ -242,21 +504,28 @@ public class UpdatePatient extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnSave;
     private javax.swing.JButton btnSearch;
+    private javax.swing.JComboBox<String> comboBoxCommunity;
     private javax.swing.JLabel lblBP;
+    private javax.swing.JLabel lblBPError;
     private javax.swing.JLabel lblCity;
     private javax.swing.JLabel lblCommunity;
     private javax.swing.JLabel lblCreateTitle;
     private javax.swing.JLabel lblDOB;
+    private javax.swing.JLabel lblDOBError;
     private javax.swing.JLabel lblFirstName;
+    private javax.swing.JLabel lblFirstNameError;
     private javax.swing.JLabel lblHeartRate;
+    private javax.swing.JLabel lblHeartRateError;
     private javax.swing.JLabel lblHouseNumber;
     private javax.swing.JLabel lblLastName;
+    private javax.swing.JLabel lblLastNameError;
     private javax.swing.JLabel lblPatientID;
     private javax.swing.JLabel lblRespiratory;
+    private javax.swing.JLabel lblRespiratoryError;
     private javax.swing.JLabel lblWeight;
+    private javax.swing.JLabel lblWeightError;
     private javax.swing.JTextField txtBP;
     private javax.swing.JTextField txtCity;
-    private javax.swing.JTextField txtCommunity;
     private javax.swing.JTextField txtDOB;
     private javax.swing.JTextField txtFirstName;
     private javax.swing.JTextField txtHeartRate;

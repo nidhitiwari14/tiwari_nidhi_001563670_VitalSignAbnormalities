@@ -6,8 +6,10 @@
 package ui;
 
 import java.util.HashMap;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-import model.System;
+import model.Patient;
+import model.SystemM;
 
 /**
  *
@@ -15,11 +17,11 @@ import model.System;
  */
 public class ViewJPanel extends javax.swing.JPanel {
 
-    System system;
+    SystemM system;
     /**
      * Creates new form ViewJPanel
      */
-    public ViewJPanel(System system) {
+    public ViewJPanel(SystemM system) {
         initComponents();
         this.system = system;
         populateTable();
@@ -36,7 +38,7 @@ public class ViewJPanel extends javax.swing.JPanel {
 
         jButton2 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tblModel = new javax.swing.JTable();
+        tblViewPatientDetails = new javax.swing.JTable();
         btnAbnormalBP = new javax.swing.JButton();
         scrollAbnormal = new javax.swing.JScrollPane();
         tblAbnormal = new javax.swing.JTable();
@@ -44,10 +46,11 @@ public class ViewJPanel extends javax.swing.JPanel {
         btnAbnormalHeartRate = new javax.swing.JButton();
         btnAbnormalWeight = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
 
         jButton2.setText("Abnormal Vital Heart Rate");
 
-        tblModel.setModel(new javax.swing.table.DefaultTableModel(
+        tblViewPatientDetails.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null, null, null},
                 {null, null, null, null, null, null, null, null},
@@ -58,7 +61,7 @@ public class ViewJPanel extends javax.swing.JPanel {
                 "ID", "First Name", "Last Name", "DOB", "House Number", "Community", "City", "Age Group"
             }
         ));
-        jScrollPane1.setViewportView(tblModel);
+        jScrollPane1.setViewportView(tblViewPatientDetails);
 
         btnAbnormalBP.setBackground(new java.awt.Color(0, 153, 255));
         btnAbnormalBP.setFont(new java.awt.Font("Lucida Grande", 3, 14)); // NOI18N
@@ -112,32 +115,40 @@ public class ViewJPanel extends javax.swing.JPanel {
         jLabel1.setFont(new java.awt.Font("Lucida Grande", 1, 14)); // NOI18N
         jLabel1.setText("View Abnormal Vital Sign Per Community");
 
+        jButton1.setText("Delete Patient");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addGroup(layout.createSequentialGroup()
-                            .addContainerGap()
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 964, Short.MAX_VALUE))
-                        .addGroup(layout.createSequentialGroup()
-                            .addContainerGap()
-                            .addComponent(scrollAbnormal)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(14, 14, 14)
-                        .addComponent(btnAbnormalBP, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(btnAbnormalHeartRate)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(btnAbnormalRespRate)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnAbnormalWeight))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(362, 362, 362)
-                        .addComponent(jLabel1)))
-                .addContainerGap(158, Short.MAX_VALUE))
+                        .addComponent(jLabel1))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jButton1))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(btnAbnormalBP, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(btnAbnormalHeartRate)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(btnAbnormalRespRate)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(btnAbnormalWeight))
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 964, Short.MAX_VALUE)
+                                .addComponent(scrollAbnormal)))))
+                .addContainerGap(162, Short.MAX_VALUE))
         );
 
         layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {btnAbnormalBP, btnAbnormalHeartRate, btnAbnormalRespRate, btnAbnormalWeight});
@@ -149,15 +160,17 @@ public class ViewJPanel extends javax.swing.JPanel {
                 .addComponent(jLabel1)
                 .addGap(45, 45, 45)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(41, 41, 41)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(29, 29, 29)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnAbnormalBP, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnAbnormalHeartRate, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnAbnormalRespRate, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnAbnormalWeight, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(35, 35, 35)
+                .addGap(18, 18, 18)
                 .addComponent(scrollAbnormal, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(112, Short.MAX_VALUE))
+                .addContainerGap(92, Short.MAX_VALUE))
         );
 
         layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {btnAbnormalBP, btnAbnormalHeartRate, btnAbnormalRespRate, btnAbnormalWeight});
@@ -223,13 +236,31 @@ public class ViewJPanel extends javax.swing.JPanel {
         });
     }//GEN-LAST:event_btnAbnormalWeightActionPerformed
 
-    private void populateTable() {
-    DefaultTableModel model = (DefaultTableModel) tblModel.getModel();
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        
+        int selectedRowIndex = tblViewPatientDetails.getSelectedRow();
+        
+        if(selectedRowIndex < 0) {  
+            JOptionPane.showMessageDialog(this, "Please select a row to delete");
+            return;
+        }
+        
+        DefaultTableModel model = (DefaultTableModel) tblViewPatientDetails.getModel();
+        Patient selectedPatient = (Patient) model.getValueAt(selectedRowIndex, 0);
+        
+        system.removePatient(selectedPatient);
+        JOptionPane.showMessageDialog(this, "Patient Record deleted"); 
+        
+        populateTable();
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    public void populateTable() {
+    DefaultTableModel model = (DefaultTableModel) tblViewPatientDetails.getModel();
     model.setRowCount(0);
      java.lang.System.out.println(system.getPatientById(0));
     system.getPatientDirectory().forEach(patient -> {
         Object [] row = new Object[10];
-        row[0] = patient.getPersonId();
+        row[0] = patient;
         row[1] = patient.getFirstName();
         row[2] = patient.getLastName();
         row[3] = patient.getDateOfBirth().toString();
@@ -247,11 +278,12 @@ public class ViewJPanel extends javax.swing.JPanel {
     private javax.swing.JButton btnAbnormalHeartRate;
     private javax.swing.JButton btnAbnormalRespRate;
     private javax.swing.JButton btnAbnormalWeight;
+    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane scrollAbnormal;
     private javax.swing.JTable tblAbnormal;
-    private javax.swing.JTable tblModel;
+    private javax.swing.JTable tblViewPatientDetails;
     // End of variables declaration//GEN-END:variables
 }

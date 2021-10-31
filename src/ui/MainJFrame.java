@@ -11,7 +11,7 @@ import java.time.format.DateTimeFormatter;
 import model.Encounter;
 import model.Patient;
 import model.PatientDirectory;
-import model.System;
+import model.SystemM;
 import model.VitalSigns;
 
 /**
@@ -20,7 +20,7 @@ import model.VitalSigns;
  */
 public class MainJFrame extends javax.swing.JFrame {
     
-    System system;
+    SystemM system;
     PatientDirectory patientDetails;
 
     /**
@@ -28,7 +28,7 @@ public class MainJFrame extends javax.swing.JFrame {
      */
     public MainJFrame() {
         initComponents();
-        system = new System();
+        system = new SystemM();
         addMultiplePatient();
     }
 
@@ -171,7 +171,7 @@ public class MainJFrame extends javax.swing.JFrame {
             "Annie", 
             "Kalpa", 
             dob, 
-            "205", 
+            "2051", 
             "Dorchester",
             "Boston",  
             system.getPatientDirectory().size() + 1,
@@ -195,7 +195,7 @@ public class MainJFrame extends javax.swing.JFrame {
         "Mike", 
         "Tyso", 
         dob2, 
-        "136", 
+        "1360", 
         "Beacon Hill",
         "Boston",  
         system.getPatientDirectory().size() + 1,
@@ -219,7 +219,7 @@ public class MainJFrame extends javax.swing.JFrame {
         "Chris", 
         "Royal", 
         dob3, 
-        "102", 
+        "1021", 
         "Beacon Hill",
         "Boston",  
         system.getPatientDirectory().size() + 1,
@@ -243,7 +243,7 @@ public class MainJFrame extends javax.swing.JFrame {
         "Jane", 
         "Sherman", 
         dob4, 
-        "112", 
+        "1125", 
         "Dorchester",
         "Boston",  
         system.getPatientDirectory().size() + 1,
@@ -267,7 +267,7 @@ public class MainJFrame extends javax.swing.JFrame {
         "Jenny", 
         "Rich", 
         dob5, 
-        "121", 
+        "1205", 
         "Beacon Hill",
         "Boston",  
         system.getPatientDirectory().size() + 1,

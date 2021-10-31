@@ -14,7 +14,7 @@ import java.util.Optional;
  *
  * @author nidhitiwari
  */
-public class System {
+public class SystemM {
    
     private List<Patient> patientDirectory = new ArrayList<>();
     private List<Person> personDirectory = new ArrayList<>();
@@ -41,6 +41,11 @@ public class System {
     public void addPatient(Patient patient) {
         this.personDirectory.add(patient);
         this.patientDirectory.add(patient);
+    }
+    
+     public void removePatient(Patient patient) {
+        this.personDirectory.remove(patient);
+        this.patientDirectory.remove(patient);
     }
     
     public House getOrAddHouse(House house) {
