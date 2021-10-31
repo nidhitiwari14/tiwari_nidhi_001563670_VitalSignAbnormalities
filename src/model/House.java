@@ -20,4 +20,8 @@ public class House extends Community {
     public String getHouseNumber() {
         return houseNumber;
     }
+    
+    public void setHouseNumber(String houseNumber) {
+     this.houseNumber = houseNumber;
+    }
 }

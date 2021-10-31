@@ -299,7 +299,7 @@ public class CreatePatient extends javax.swing.JPanel {
                     isFormValid = false;
                 }
         }
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd/yyyy");
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd/yyyy");
             LocalDate localDate = LocalDate.parse(txtDOB.getText(), formatter);
             java.util.Date date=new java.util.Date(); 
             String houseNum = txtHouseNumber.getText();
@@ -309,6 +309,7 @@ public class CreatePatient extends javax.swing.JPanel {
             String community = selectedcommunity.toString();
             String city = txtCity.getText();
             LocalDate dob = localDate; 
+            
             Patient patient = new Patient(
             firstName, 
             lastName, 
@@ -335,6 +336,17 @@ public class CreatePatient extends javax.swing.JPanel {
         } else {
             JOptionPane.showMessageDialog(this, "Please enter valid values"); 
         }
+        
+        txtFirstName.setText("");
+        txtLastName.setText("");
+        txtDOB.setText("");
+        txtHouseNumber.setText("");
+        txtBP.setText("");
+        txtHeartRate.setText("");
+        txtRespiratory.setText("");
+        txtWeight.setText("");
+        comboBoxCommunity.setSelectedIndex(-1);
+        txtCity.setText("");
     }//GEN-LAST:event_btnSaveActionPerformed
 
     private void txtFirstNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtFirstNameActionPerformed

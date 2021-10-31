@@ -17,6 +17,14 @@ public class Community extends City {
         this.communityName = name;
     }
 
+    public String getCityName() {
+        return cityName;
+    }
+
+    public void setCityName(String cityName) {
+        this.cityName = cityName;
+    }
+
     public String getCommunityName() {
         return communityName;
     }

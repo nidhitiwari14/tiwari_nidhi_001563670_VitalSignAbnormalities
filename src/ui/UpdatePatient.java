@@ -6,8 +6,11 @@
 package ui;
 
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import javax.swing.JOptionPane;
 import model.Encounter;
+import model.House;
 import model.Patient;
 import model.SystemM;
 import model.VitalSigns;
@@ -278,8 +281,6 @@ public class UpdatePatient extends javax.swing.JPanel {
         txtFirstName.setText(String.valueOf( patient1.getFirstName()));
         txtLastName.setText(String.valueOf( patient1.getLastName()));
         txtDOB.setText(String.valueOf(patient1.getDateOfBirth().toString()));
-        System.out.print("patient1.getResidence()  " + String.valueOf(patient1.getResidence().getCommunityName()));
-//        comboBoxCommunity.setSelectedItem(String.valueOf(patient1.getResidence().getCommunityName()));
         comboBoxCommunity.setSelectedItem(patient1.getResidence().getCommunityName());
         txtHouseNumber.setText(String.valueOf(patient1.getResidence().getHouseNumber()));
         txtCity.setText(String.valueOf(patient1.getResidence().getCityName()));
@@ -359,6 +360,26 @@ public class UpdatePatient extends javax.swing.JPanel {
                     isFormValid = false;
                 }
         }
+        
+        if (patient1 != null) {
+//            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd/yyyy");
+//            LocalDate localDate = LocalDate.parse(txtDOB.getText(), formatter);
+//            java.util.Date date=new java.util.Date(); 
+            String houseNum = txtHouseNumber.getText();
+            String firstName = txtFirstName.getText();
+            String lastName = txtLastName.getText();
+            Object selectedcommunity = comboBoxCommunity.getSelectedItem();
+            String community = selectedcommunity.toString();
+            String city = txtCity.getText();
+//            LocalDate dob = localDate;
+            
+            House house = new House(houseNum, community, city);
+            
+            patient1.setFirstName(firstName);
+            patient1.setLastName(lastName);
+//            patient1.setDateOfBirth(dob);
+            patient1.setResidence(house);
+        }
 
         Encounter encounter = null;
         VitalSigns vitals = new VitalSigns();
@@ -377,6 +398,17 @@ public class UpdatePatient extends javax.swing.JPanel {
         if(isFormValid) {
             patient1.getEncounterHistory().recordEncounter(encounter);
             JOptionPane.showMessageDialog(this, "Vital info Updated");
+            
+            txtFirstName.setText("");
+            txtLastName.setText("");
+            txtDOB.setText("");
+            txtHouseNumber.setText("");
+            txtBP.setText("");
+            txtHeartRate.setText("");
+            txtRespiratory.setText("");
+            txtWeight.setText("");
+            comboBoxCommunity.setSelectedIndex(-1);
+            txtCity.setText("");
         } else {
             JOptionPane.showMessageDialog(this, "Please enter valid values"); 
         }
