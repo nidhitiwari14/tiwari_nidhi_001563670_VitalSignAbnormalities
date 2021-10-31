@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 
-<Form version="1.3" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JPanelFormInfo">
+<Form version="1.5" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JPanelFormInfo">
   <NonVisualComponents>
     <Component class="javax.swing.JButton" name="jButton2">
       <Properties>
@@ -24,27 +24,33 @@
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" attributes="0">
-              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                  <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="16" max="-2" attributes="0"/>
-                      <Component id="btnAbnormalBP" min="-2" pref="180" max="-2" attributes="0"/>
-                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Component id="btnAbnormalHeartRate" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="btnAbnormalRespRate" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Component id="btnAbnormalWeight" min="-2" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="jScrollPane1" pref="964" max="32767" attributes="0"/>
+                      </Group>
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="scrollAbnormal" max="32767" attributes="0"/>
+                      </Group>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="14" max="-2" attributes="0"/>
+                      <Component id="btnAbnormalBP" linkSize="1" min="-2" pref="180" max="-2" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Component id="btnAbnormalHeartRate" linkSize="1" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Component id="btnAbnormalRespRate" linkSize="1" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jScrollPane1" pref="853" max="32767" attributes="0"/>
+                      <Component id="btnAbnormalWeight" linkSize="1" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="scrollAbnormal" max="32767" attributes="0"/>
+                      <EmptySpace min="-2" pref="362" max="-2" attributes="0"/>
+                      <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
-              <EmptySpace pref="19" max="32767" attributes="0"/>
+              <EmptySpace pref="158" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -52,17 +58,19 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="jScrollPane1" min="-2" pref="167" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
+              <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="45" max="-2" attributes="0"/>
+              <Component id="jScrollPane1" min="-2" pref="184" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="41" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="btnAbnormalBP" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="btnAbnormalRespRate" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="btnAbnormalHeartRate" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="btnAbnormalWeight" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="btnAbnormalBP" linkSize="2" alignment="3" min="-2" pref="46" max="-2" attributes="0"/>
+                  <Component id="btnAbnormalHeartRate" linkSize="2" alignment="3" min="-2" pref="46" max="-2" attributes="0"/>
+                  <Component id="btnAbnormalRespRate" linkSize="2" alignment="3" min="-2" pref="48" max="-2" attributes="0"/>
+                  <Component id="btnAbnormalWeight" linkSize="2" alignment="3" min="-2" pref="48" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace type="unrelated" max="-2" attributes="0"/>
-              <Component id="scrollAbnormal" min="-2" pref="257" max="-2" attributes="0"/>
-              <EmptySpace pref="175" max="32767" attributes="0"/>
+              <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
+              <Component id="scrollAbnormal" min="-2" pref="196" max="-2" attributes="0"/>
+              <EmptySpace pref="112" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -142,7 +150,13 @@
     </Container>
     <Component class="javax.swing.JButton" name="btnAbnormalBP">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Abnormal BP"/>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="ff" green="99" red="0" type="rgb"/>
+        </Property>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Lucida Grande" size="14" style="3"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="Abnormal Blood Pressure"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnAbnormalBPActionPerformed"/>
@@ -192,7 +206,13 @@
     </Container>
     <Component class="javax.swing.JButton" name="btnAbnormalRespRate">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Abnormal Vital Repiratory Rate"/>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="ff" green="99" red="0" type="rgb"/>
+        </Property>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Lucida Grande" size="14" style="3"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="Abnormal Repiratory Rate"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnAbnormalRespRateActionPerformed"/>
@@ -200,7 +220,13 @@
     </Component>
     <Component class="javax.swing.JButton" name="btnAbnormalHeartRate">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Abnormal Vital Heart Rate"/>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="ff" green="99" red="0" type="rgb"/>
+        </Property>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Lucida Grande" size="14" style="3"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="Abnormal Heart Rate"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnAbnormalHeartRateActionPerformed"/>
@@ -208,11 +234,25 @@
     </Component>
     <Component class="javax.swing.JButton" name="btnAbnormalWeight">
       <Properties>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="ff" green="99" red="0" type="rgb"/>
+        </Property>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Lucida Grande" size="14" style="3"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="Abnormal Weight"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnAbnormalWeightActionPerformed"/>
       </Events>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jLabel1">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Lucida Grande" size="14" style="1"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="View Abnormal Vital Sign Per Community"/>
+      </Properties>
     </Component>
   </SubComponents>
 </Form>

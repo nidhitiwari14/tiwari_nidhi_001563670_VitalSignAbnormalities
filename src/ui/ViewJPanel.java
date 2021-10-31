@@ -43,6 +43,7 @@ public class ViewJPanel extends javax.swing.JPanel {
         btnAbnormalRespRate = new javax.swing.JButton();
         btnAbnormalHeartRate = new javax.swing.JButton();
         btnAbnormalWeight = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
 
         jButton2.setText("Abnormal Vital Heart Rate");
 
@@ -59,7 +60,9 @@ public class ViewJPanel extends javax.swing.JPanel {
         ));
         jScrollPane1.setViewportView(tblModel);
 
-        btnAbnormalBP.setText("Abnormal BP");
+        btnAbnormalBP.setBackground(new java.awt.Color(0, 153, 255));
+        btnAbnormalBP.setFont(new java.awt.Font("Lucida Grande", 3, 14)); // NOI18N
+        btnAbnormalBP.setText("Abnormal Blood Pressure");
         btnAbnormalBP.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAbnormalBPActionPerformed(evt);
@@ -79,20 +82,26 @@ public class ViewJPanel extends javax.swing.JPanel {
         ));
         scrollAbnormal.setViewportView(tblAbnormal);
 
-        btnAbnormalRespRate.setText("Abnormal Vital Repiratory Rate");
+        btnAbnormalRespRate.setBackground(new java.awt.Color(0, 153, 255));
+        btnAbnormalRespRate.setFont(new java.awt.Font("Lucida Grande", 3, 14)); // NOI18N
+        btnAbnormalRespRate.setText("Abnormal Repiratory Rate");
         btnAbnormalRespRate.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAbnormalRespRateActionPerformed(evt);
             }
         });
 
-        btnAbnormalHeartRate.setText("Abnormal Vital Heart Rate");
+        btnAbnormalHeartRate.setBackground(new java.awt.Color(0, 153, 255));
+        btnAbnormalHeartRate.setFont(new java.awt.Font("Lucida Grande", 3, 14)); // NOI18N
+        btnAbnormalHeartRate.setText("Abnormal Heart Rate");
         btnAbnormalHeartRate.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAbnormalHeartRateActionPerformed(evt);
             }
         });
 
+        btnAbnormalWeight.setBackground(new java.awt.Color(0, 153, 255));
+        btnAbnormalWeight.setFont(new java.awt.Font("Lucida Grande", 3, 14)); // NOI18N
         btnAbnormalWeight.setText("Abnormal Weight");
         btnAbnormalWeight.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -100,44 +109,59 @@ public class ViewJPanel extends javax.swing.JPanel {
             }
         });
 
+        jLabel1.setFont(new java.awt.Font("Lucida Grande", 1, 14)); // NOI18N
+        jLabel1.setText("View Abnormal Vital Sign Per Community");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(layout.createSequentialGroup()
+                            .addContainerGap()
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 964, Short.MAX_VALUE))
+                        .addGroup(layout.createSequentialGroup()
+                            .addContainerGap()
+                            .addComponent(scrollAbnormal)))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(16, 16, 16)
+                        .addGap(14, 14, 14)
                         .addComponent(btnAbnormalBP, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGap(18, 18, 18)
                         .addComponent(btnAbnormalHeartRate)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnAbnormalRespRate)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(btnAbnormalRespRate)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnAbnormalWeight))
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 853, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(scrollAbnormal)))
-                .addContainerGap(19, Short.MAX_VALUE))
+                        .addGap(362, 362, 362)
+                        .addComponent(jLabel1)))
+                .addContainerGap(158, Short.MAX_VALUE))
         );
+
+        layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {btnAbnormalBP, btnAbnormalHeartRate, btnAbnormalRespRate, btnAbnormalWeight});
+
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(26, 26, 26)
+                .addComponent(jLabel1)
+                .addGap(45, 45, 45)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(41, 41, 41)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnAbnormalBP)
-                    .addComponent(btnAbnormalRespRate)
-                    .addComponent(btnAbnormalHeartRate)
-                    .addComponent(btnAbnormalWeight))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(scrollAbnormal, javax.swing.GroupLayout.PREFERRED_SIZE, 257, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(175, Short.MAX_VALUE))
+                    .addComponent(btnAbnormalBP, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnAbnormalHeartRate, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnAbnormalRespRate, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnAbnormalWeight, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(35, 35, 35)
+                .addComponent(scrollAbnormal, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(112, Short.MAX_VALUE))
         );
+
+        layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {btnAbnormalBP, btnAbnormalHeartRate, btnAbnormalRespRate, btnAbnormalWeight});
+
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAbnormalBPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAbnormalBPActionPerformed
@@ -149,8 +173,8 @@ public class ViewJPanel extends javax.swing.JPanel {
                    Object [] row = new Object[10];
                    row[0] = key;
                    row[1] = value;
-                model.addRow(row);
-
+                   row[2] = "Blood Pressure";
+                   model.addRow(row);
                     });
     }//GEN-LAST:event_btnAbnormalBPActionPerformed
 
@@ -163,6 +187,7 @@ public class ViewJPanel extends javax.swing.JPanel {
                    Object [] row = new Object[10];
                    row[0] = key;
                    row[1] = value;
+                   row[2] = "Heart Rate";
                    model.addRow(row);
 
                 });
@@ -177,6 +202,7 @@ public class ViewJPanel extends javax.swing.JPanel {
            Object [] row = new Object[10];
            row[0] = key;
            row[1] = value;
+           row[2] = "Respiratory Rate";
            model.addRow(row);
 
         });
@@ -191,6 +217,7 @@ public class ViewJPanel extends javax.swing.JPanel {
            Object [] row = new Object[10];
            row[0] = key;
            row[1] = value;
+           row[2] = "Weight";
            model.addRow(row);
 
         });
@@ -203,12 +230,13 @@ public class ViewJPanel extends javax.swing.JPanel {
     system.getPatientDirectory().forEach(patient -> {
         Object [] row = new Object[10];
         row[0] = patient.getPersonId();
-        row[1] = patient.getFirstName()+" "+patient.getLastName();
-        row[2] = patient.getDateOfBirth().toString();
-        row[3] = patient.getAgeGroup().toString();
-        row[5] = patient.getResidence().getHouseNumber();
-        row[6] = patient.getResidence().getCommunityName();
-        row[4] = patient.getResidence().getCityName();
+        row[1] = patient.getFirstName();
+        row[2] = patient.getLastName();
+        row[3] = patient.getDateOfBirth().toString();
+        row[4] = patient.getResidence().getHouseNumber();
+        row[5] = patient.getResidence().getCommunityName();
+        row[6] = patient.getResidence().getCityName();
+        row[7] = patient.getAgeGroup().toString();
 
         model.addRow(row);
     });        
@@ -220,6 +248,7 @@ public class ViewJPanel extends javax.swing.JPanel {
     private javax.swing.JButton btnAbnormalRespRate;
     private javax.swing.JButton btnAbnormalWeight;
     private javax.swing.JButton jButton2;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane scrollAbnormal;
     private javax.swing.JTable tblAbnormal;
