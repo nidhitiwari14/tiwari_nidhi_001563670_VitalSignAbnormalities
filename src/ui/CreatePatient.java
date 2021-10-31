@@ -5,6 +5,7 @@
  */
 package ui;
 
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import javax.swing.JOptionPane;
@@ -18,6 +19,8 @@ import model.VitalSigns;
  * @author nidhitiwari
  */
 public class CreatePatient extends javax.swing.JPanel {
+    
+    public Boolean isFormValid = false;
     
     System system;
 
@@ -60,6 +63,14 @@ public class CreatePatient extends javax.swing.JPanel {
         txtRespiratory = new javax.swing.JTextField();
         txtWeight = new javax.swing.JTextField();
         btnSave = new javax.swing.JButton();
+        lblFirstNameError = new javax.swing.JLabel();
+        lblLastNameError = new javax.swing.JLabel();
+        lblDOBError = new javax.swing.JLabel();
+        lblHouseNumberError = new javax.swing.JLabel();
+        lblBPError = new javax.swing.JLabel();
+        lblHeartRateError = new javax.swing.JLabel();
+        lblRespiratoryError = new javax.swing.JLabel();
+        lblWeightError = new javax.swing.JLabel();
 
         lblCreateTitle.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
         lblCreateTitle.setText("Create Patient Details");
@@ -76,6 +87,29 @@ public class CreatePatient extends javax.swing.JPanel {
 
         lblCity.setText("City");
 
+        txtFirstName.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtFirstNameActionPerformed(evt);
+            }
+        });
+        txtFirstName.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtFirstNameKeyPressed(evt);
+            }
+        });
+
+        txtLastName.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtLastNameKeyPressed(evt);
+            }
+        });
+
+        txtCity.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtCityKeyPressed(evt);
+            }
+        });
+
         lblBP.setText("BP");
 
         lblHeartRate.setText("Heart Rate");
@@ -84,6 +118,32 @@ public class CreatePatient extends javax.swing.JPanel {
 
         lblWeight.setText("Weight");
 
+        txtBP.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtBPKeyPressed(evt);
+            }
+        });
+
+        txtHeartRate.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtHeartRateKeyPressed(evt);
+            }
+        });
+
+        txtRespiratory.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtRespiratoryKeyPressed(evt);
+            }
+        });
+
+        txtWeight.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtWeightKeyPressed(evt);
+            }
+        });
+
+        btnSave.setBackground(new java.awt.Color(0, 153, 255));
+        btnSave.setFont(new java.awt.Font("Lucida Grande", 1, 14)); // NOI18N
         btnSave.setText("Save");
         btnSave.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -115,19 +175,30 @@ public class CreatePatient extends javax.swing.JPanel {
                             .addComponent(lblWeight))
                         .addGap(80, 80, 80)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(btnSave)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(txtFirstName)
-                                .addComponent(txtLastName)
-                                .addComponent(txtDOB)
-                                .addComponent(txtHouseNumber)
-                                .addComponent(txtCity)
-                                .addComponent(txtBP)
-                                .addComponent(txtHeartRate)
-                                .addComponent(txtRespiratory)
-                                .addComponent(txtWeight, javax.swing.GroupLayout.DEFAULT_SIZE, 196, Short.MAX_VALUE))
-                            .addComponent(txtCommunity, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(249, Short.MAX_VALUE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(txtFirstName)
+                                    .addComponent(txtLastName)
+                                    .addComponent(txtDOB)
+                                    .addComponent(txtHouseNumber)
+                                    .addComponent(txtCity)
+                                    .addComponent(txtBP)
+                                    .addComponent(txtHeartRate)
+                                    .addComponent(txtRespiratory)
+                                    .addComponent(txtWeight, javax.swing.GroupLayout.DEFAULT_SIZE, 196, Short.MAX_VALUE))
+                                .addGap(54, 54, 54)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(lblLastNameError, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(lblDOBError, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(lblHouseNumberError, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(lblBPError)
+                                    .addComponent(lblHeartRateError)
+                                    .addComponent(lblRespiratoryError)
+                                    .addComponent(lblWeightError)
+                                    .addComponent(lblFirstNameError, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(txtCommunity, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnSave, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(72, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -137,19 +208,23 @@ public class CreatePatient extends javax.swing.JPanel {
                 .addGap(31, 31, 31)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblFirstName)
-                    .addComponent(txtFirstName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtFirstName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblFirstNameError))
                 .addGap(16, 16, 16)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblLastName)
-                    .addComponent(txtLastName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtLastName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblLastNameError))
                 .addGap(16, 16, 16)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblDOB)
-                    .addComponent(txtDOB, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtDOB, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblDOBError))
                 .addGap(21, 21, 21)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblHouseNumber)
-                    .addComponent(txtHouseNumber, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtHouseNumber, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblHouseNumberError))
                 .addGap(23, 23, 23)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblCity)
@@ -161,26 +236,45 @@ public class CreatePatient extends javax.swing.JPanel {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblBP)
-                    .addComponent(txtBP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtBP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblBPError))
                 .addGap(17, 17, 17)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblHeartRate)
-                    .addComponent(txtHeartRate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtHeartRate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblHeartRateError))
                 .addGap(26, 26, 26)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblRespiratory)
-                    .addComponent(txtRespiratory, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtRespiratory, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblRespiratoryError))
                 .addGap(29, 29, 29)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblWeight)
-                    .addComponent(txtWeight, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtWeight, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblWeightError))
                 .addGap(18, 18, 18)
-                .addComponent(btnSave)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(btnSave, javax.swing.GroupLayout.DEFAULT_SIZE, 35, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
+        validateForm();
+        if (!txtDOB.getText().isEmpty()) {
+            SimpleDateFormat formatter = new SimpleDateFormat("MM/dd/yyyy");
+            try
+                {
+                    formatter.parse(txtDOB.getText());
+                    lblDOBError.setText("");
+                    isFormValid = true;
+                }
+	    
+                catch (Exception e)
+                {
+                    lblDOBError.setText("Date Format is Invalid");
+                    isFormValid = false;
+                }
+        }
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd/yyyy");
             LocalDate localDate = LocalDate.parse(txtDOB.getText(), formatter);
             java.util.Date date=new java.util.Date(); 
@@ -209,25 +303,171 @@ public class CreatePatient extends javax.swing.JPanel {
         vitals.setWeightInKilos(Float.parseFloat(txtWeight.getText()));
         encounter = new Encounter(vitals);
         patient.getEncounterHistory().recordEncounter(encounter);
-
-        system.addPatient(patient);
-            JOptionPane.showMessageDialog(this, "New patient Record Added");
+        
+        if(isFormValid) {
+            system.addPatient(patient);
+            JOptionPane.showMessageDialog(this, "New patient Record Added"); 
+        }
     }//GEN-LAST:event_btnSaveActionPerformed
 
+    private void txtFirstNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtFirstNameActionPerformed
+
+    }//GEN-LAST:event_txtFirstNameActionPerformed
+
+    private void txtFirstNameKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtFirstNameKeyPressed
+        validateForm();
+        char letterPressed = evt.getKeyChar();
+        if(Character.isDigit(letterPressed)){
+        isFormValid = false;
+        txtFirstName.setEditable(false);
+        lblFirstNameError.setText("Please enter letters only!");
+        validateForm();
+        }
+        else
+        {
+        txtFirstName.setEditable(true);
+        isFormValid = true;
+        lblFirstNameError.setText("");
+        validateForm();
+        }
+    }//GEN-LAST:event_txtFirstNameKeyPressed
+
+    private void txtLastNameKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtLastNameKeyPressed
+        validateForm();
+        char letterPressed = evt.getKeyChar();
+        if(Character.isDigit(letterPressed)){
+        isFormValid = false;
+        txtLastName.setEditable(false);
+        lblLastNameError.setText("Please enter letters only!");
+        validateForm();
+        }
+        else
+        {
+        txtLastName.setEditable(true);
+        isFormValid = true;
+        lblLastNameError.setText("");
+        validateForm();
+        }
+    }//GEN-LAST:event_txtLastNameKeyPressed
+
+    private void txtCityKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCityKeyPressed
+
+    }//GEN-LAST:event_txtCityKeyPressed
+
+    private void txtBPKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtBPKeyPressed
+        validateForm();
+        char NumPressed = evt.getKeyChar();
+        if(Character.isLetter(NumPressed)){
+            isFormValid = false;
+            txtBP.setEditable(false);
+            lblBPError.setText("Please enter number Only!");
+            validateForm();
+        }
+        else
+        {
+            txtBP.setEditable(true);
+            isFormValid = true;
+            lblBPError.setText("");
+            validateForm();
+        }
+    }//GEN-LAST:event_txtBPKeyPressed
+
+    private void txtHeartRateKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtHeartRateKeyPressed
+        validateForm();
+        char NumPressed = evt.getKeyChar();
+        if(Character.isLetter(NumPressed)){
+            isFormValid = false;
+            txtHeartRate.setEditable(false);
+            lblHeartRateError.setText("Please enter number Only!");
+            validateForm();
+        }
+        else
+        {
+            txtHeartRate.setEditable(true);
+            isFormValid = true;
+            lblHeartRateError.setText("");
+            validateForm();
+        }
+    }//GEN-LAST:event_txtHeartRateKeyPressed
+
+    private void txtRespiratoryKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtRespiratoryKeyPressed
+        validateForm();
+        char NumPressed = evt.getKeyChar();
+        if(Character.isLetter(NumPressed)){
+            isFormValid = false;
+            txtRespiratory.setEditable(false);
+            lblRespiratoryError.setText("Please enter number Only!");
+            validateForm();
+        }
+        else
+        {
+            txtRespiratory.setEditable(true);
+            isFormValid = true;
+            lblRespiratoryError.setText("");
+            validateForm();
+        } 
+    }//GEN-LAST:event_txtRespiratoryKeyPressed
+
+    private void txtWeightKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtWeightKeyPressed
+        validateForm();
+        char NumPressed = evt.getKeyChar();
+        if(Character.isLetter(NumPressed)){
+            isFormValid = false;
+            txtWeight.setEditable(false);
+            lblWeightError.setText("Please enter number Only!");
+            validateForm();
+        }
+        else
+        {
+            txtWeight.setEditable(true);
+            isFormValid = true;
+            lblWeightError.setText("");
+            validateForm();
+        } 
+    }//GEN-LAST:event_txtWeightKeyPressed
+    
+    private void validateForm () {
+        if((txtFirstName.getText().isEmpty())) {
+            isFormValid = false;
+        }
+        if((txtLastName.getText().isEmpty())) {
+            isFormValid = false;
+        }
+        if((txtDOB.getText().isEmpty())) {
+            isFormValid = false;
+        }
+        if((txtHouseNumber.getText().isEmpty())) {
+            isFormValid = false;
+        }
+        if((txtCommunity.getText().isEmpty())) {
+            isFormValid = false;
+        }
+        if((txtCity.getText().isEmpty())) {
+            isFormValid = false;
+        }
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnSave;
     private javax.swing.JLabel lblBP;
+    private javax.swing.JLabel lblBPError;
     private javax.swing.JLabel lblCity;
     private javax.swing.JLabel lblCommunity;
     private javax.swing.JLabel lblCreateTitle;
     private javax.swing.JLabel lblDOB;
+    private javax.swing.JLabel lblDOBError;
     private javax.swing.JLabel lblFirstName;
+    private javax.swing.JLabel lblFirstNameError;
     private javax.swing.JLabel lblHeartRate;
+    private javax.swing.JLabel lblHeartRateError;
     private javax.swing.JLabel lblHouseNumber;
+    private javax.swing.JLabel lblHouseNumberError;
     private javax.swing.JLabel lblLastName;
+    private javax.swing.JLabel lblLastNameError;
     private javax.swing.JLabel lblRespiratory;
+    private javax.swing.JLabel lblRespiratoryError;
     private javax.swing.JLabel lblWeight;
+    private javax.swing.JLabel lblWeightError;
     private javax.swing.JTextField txtBP;
     private javax.swing.JTextField txtCity;
     private javax.swing.JTextField txtCommunity;

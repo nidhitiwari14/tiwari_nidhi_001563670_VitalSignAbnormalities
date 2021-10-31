@@ -51,6 +51,8 @@ public class DoctorVisit extends javax.swing.JPanel {
 
         splitPane.setLeftComponent(jPanel1);
 
+        btnCreateNewPatient.setBackground(new java.awt.Color(0, 153, 255));
+        btnCreateNewPatient.setFont(new java.awt.Font("Lucida Grande", 1, 14)); // NOI18N
         btnCreateNewPatient.setText("Create New Patient");
         btnCreateNewPatient.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -58,6 +60,8 @@ public class DoctorVisit extends javax.swing.JPanel {
             }
         });
 
+        btnUpdateExistingPatient.setBackground(new java.awt.Color(0, 153, 255));
+        btnUpdateExistingPatient.setFont(new java.awt.Font("Lucida Grande", 1, 14)); // NOI18N
         btnUpdateExistingPatient.setText("Update Existing Patient");
         btnUpdateExistingPatient.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -74,17 +78,22 @@ public class DoctorVisit extends javax.swing.JPanel {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnCreateNewPatient, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnUpdateExistingPatient))
-                .addContainerGap(232, Short.MAX_VALUE))
+                .addContainerGap(209, Short.MAX_VALUE))
         );
+
+        jPanel2Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {btnCreateNewPatient, btnUpdateExistingPatient});
+
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(151, 151, 151)
-                .addComponent(btnCreateNewPatient)
-                .addGap(119, 119, 119)
-                .addComponent(btnUpdateExistingPatient)
-                .addContainerGap(284, Short.MAX_VALUE))
+                .addComponent(btnCreateNewPatient, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(65, 65, 65)
+                .addComponent(btnUpdateExistingPatient, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(230, Short.MAX_VALUE))
         );
+
+        jPanel2Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {btnCreateNewPatient, btnUpdateExistingPatient});
 
         splitPane.setRightComponent(jPanel2);
 

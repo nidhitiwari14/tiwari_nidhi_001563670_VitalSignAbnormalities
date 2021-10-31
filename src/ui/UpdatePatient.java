@@ -229,7 +229,7 @@ public class UpdatePatient extends javax.swing.JPanel {
         encounter = new Encounter(vitals);
         patient1.getEncounterHistory().recordEncounter(encounter);
         
-        JOptionPane.showMessageDialog(this, "Vital info Added");
+        JOptionPane.showMessageDialog(this, "Vital info Updated");
     }//GEN-LAST:event_btnSaveActionPerformed
 
     private int getID(){

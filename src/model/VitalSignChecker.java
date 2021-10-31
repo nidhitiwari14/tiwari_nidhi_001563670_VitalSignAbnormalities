@@ -39,7 +39,7 @@ public class VitalSignChecker {
         EncounterHistory history = patient.getEncounterHistory();
         Encounter encounter = history.latestEncounter;
         VitalSigns vitalSigns = encounter.getVitalSigns();
-        int hr = vitalSigns.getSysBP();
+        int hr = vitalSigns.getHeartRate();
         switch (ageGroup) {
             case Newborn:
                 return hr > 80 && hr < 120;
@@ -62,7 +62,7 @@ public class VitalSignChecker {
         EncounterHistory history = patient.getEncounterHistory();
         Encounter encounter = history.latestEncounter;
         VitalSigns vitalSigns = encounter.getVitalSigns();
-        int rr = vitalSigns.getSysBP();
+        int rr = vitalSigns.getRespiratoryRate();
         switch (ageGroup) {
             case Newborn:
                 return rr > 22 && rr < 34;
@@ -85,19 +85,19 @@ public class VitalSignChecker {
         EncounterHistory history = patient.getEncounterHistory();
         Encounter encounter = history.latestEncounter;
         VitalSigns vitalSigns = encounter.getVitalSigns();
-        int w = vitalSigns.getSysBP();
+        float w = vitalSigns.getWeightInKilos();
         switch (ageGroup) {
             case Newborn:
-                return w > 54 && w < 102;
+                return w > 12 && w < 15;
             case Infant:
-                return w > 66 && w < 130;
+                return w > 15 && w < 20.5;
             case Toddler:
             case PreSchooler:
-                return w > 84 && w < 160;
+                return w > 20.5 && w < 30;
             case SchoolAge:
-                return w > 104 && w < 186;
+                return w > 30 && w < 45;
             case Adolscent:
-                return w > 104 && w < 186;
+                return w > 45 && w < 80;
         }
         // Throw exception invalid value
         return true;

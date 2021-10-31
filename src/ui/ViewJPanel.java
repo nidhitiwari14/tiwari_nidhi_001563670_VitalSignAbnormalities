@@ -170,7 +170,7 @@ public class ViewJPanel extends javax.swing.JPanel {
                 model.setRowCount(0);
 
                    communityPatientMap.forEach((key, value) -> {
-                   Object [] row = new Object[10];
+                   Object [] row = new Object[3];
                    row[0] = key;
                    row[1] = value;
                    row[2] = "Blood Pressure";
@@ -184,7 +184,7 @@ public class ViewJPanel extends javax.swing.JPanel {
                 model.setRowCount(0);
 
                    communityPatientMap.forEach((key, value) -> {
-                   Object [] row = new Object[10];
+                   Object [] row = new Object[3];
                    row[0] = key;
                    row[1] = value;
                    row[2] = "Heart Rate";
@@ -199,7 +199,7 @@ public class ViewJPanel extends javax.swing.JPanel {
         model.setRowCount(0);
 
            communityPatientMap.forEach((key, value) -> {
-           Object [] row = new Object[10];
+           Object [] row = new Object[3];
            row[0] = key;
            row[1] = value;
            row[2] = "Respiratory Rate";
@@ -214,7 +214,7 @@ public class ViewJPanel extends javax.swing.JPanel {
         model.setRowCount(0);
 
            communityPatientMap.forEach((key, value) -> {
-           Object [] row = new Object[10];
+           Object [] row = new Object[3];
            row[0] = key;
            row[1] = value;
            row[2] = "Weight";

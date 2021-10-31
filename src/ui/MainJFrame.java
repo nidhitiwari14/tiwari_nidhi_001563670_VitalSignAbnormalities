@@ -181,7 +181,7 @@ public class MainJFrame extends javax.swing.JFrame {
         Encounter encounter = null;
         VitalSigns vitals = new VitalSigns();
         vitals.setSysBP(Integer.parseInt("125"));
-        vitals.setRespiratoryRate(Integer.parseInt("21"));
+        vitals.setRespiratoryRate(Integer.parseInt("17"));
         vitals.setHeartRate(Integer.parseInt("110"));
         vitals.setWeightInKilos(Float.parseFloat("90"));
         encounter = new Encounter(vitals);
@@ -230,8 +230,8 @@ public class MainJFrame extends javax.swing.JFrame {
         VitalSigns vitals3 = new VitalSigns();
         vitals3.setSysBP(Integer.parseInt("100"));
         vitals3.setRespiratoryRate(Integer.parseInt("15"));
-        vitals3.setHeartRate(Integer.parseInt("80"));
-        vitals3.setWeightInKilos(Float.parseFloat("60"));
+        vitals3.setHeartRate(Integer.parseInt("102"));
+        vitals3.setWeightInKilos(Float.parseFloat("55"));
         encounter3 = new Encounter(vitals3);
         patient3.getEncounterHistory().recordEncounter(encounter3);
         
@@ -255,7 +255,7 @@ public class MainJFrame extends javax.swing.JFrame {
         vitals4.setSysBP(Integer.parseInt("128"));
         vitals4.setRespiratoryRate(Integer.parseInt("17"));
         vitals4.setHeartRate(Integer.parseInt("115"));
-        vitals4.setWeightInKilos(Float.parseFloat("78"));
+        vitals4.setWeightInKilos(Float.parseFloat("68"));
         encounter4 = new Encounter(vitals4);
         patient4.getEncounterHistory().recordEncounter(encounter4);
         
@@ -279,7 +279,7 @@ public class MainJFrame extends javax.swing.JFrame {
         vitals5.setSysBP(Integer.parseInt("80"));
         vitals5.setRespiratoryRate(Integer.parseInt("15"));
         vitals5.setHeartRate(Integer.parseInt("70"));
-        vitals5.setWeightInKilos(Float.parseFloat("45"));
+        vitals5.setWeightInKilos(Float.parseFloat("21"));
         encounter5 = new Encounter(vitals5);
         patient5.getEncounterHistory().recordEncounter(encounter5);
         
