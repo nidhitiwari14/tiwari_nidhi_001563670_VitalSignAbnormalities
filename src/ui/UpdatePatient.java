@@ -362,22 +362,22 @@ public class UpdatePatient extends javax.swing.JPanel {
         }
         
         if (patient1 != null) {
-//            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd/yyyy");
-//            LocalDate localDate = LocalDate.parse(txtDOB.getText(), formatter);
-//            java.util.Date date=new java.util.Date(); 
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+            LocalDate localDate = LocalDate.parse(txtDOB.getText(), formatter);
+            java.util.Date date=new java.util.Date(); 
             String houseNum = txtHouseNumber.getText();
             String firstName = txtFirstName.getText();
             String lastName = txtLastName.getText();
             Object selectedcommunity = comboBoxCommunity.getSelectedItem();
             String community = selectedcommunity.toString();
             String city = txtCity.getText();
-//            LocalDate dob = localDate;
+            LocalDate dob = localDate;
             
             House house = new House(houseNum, community, city);
             
             patient1.setFirstName(firstName);
             patient1.setLastName(lastName);
-//            patient1.setDateOfBirth(dob);
+            patient1.setDateOfBirth(dob);
             patient1.setResidence(house);
         }
 

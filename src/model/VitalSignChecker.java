@@ -19,18 +19,20 @@ public class VitalSignChecker {
         int bp = vitalSigns.getSysBP();
         switch (ageGroup) {
             case Newborn:
-                return bp > 49 && bp < 71;
+                return bp > 45 && bp < 90;
             case Infant:
-                return bp > 69 && bp < 101;
+                return bp > 80 && bp < 100;
             case Toddler:
             case PreSchooler:
-                return bp > 79 && bp < 111;
-            case SchoolAge:
-                return bp > 79 && bp < 121;
+            case School:
+                return bp > 80 && bp < 120;
             case Adolscent:
-                return bp > 109 && bp < 121;
+                return bp > 90 && bp < 120;
+            case Adult:
+                return bp > 95 && bp < 135;
+            case Elderly:
+                return bp > 95 && bp < 145;
         }
-        // Throw exception invalid value
         return true;
     }
     
@@ -42,18 +44,20 @@ public class VitalSignChecker {
         int hr = vitalSigns.getHeartRate();
         switch (ageGroup) {
             case Newborn:
-                return hr > 80 && hr < 120;
+                return hr > 100 && hr < 160;
             case Infant:
-                return hr > 70 && hr < 110;
+                return hr > 90 && hr < 150;
             case Toddler:
+                return hr > 80 && hr < 140;
             case PreSchooler:
+                return hr > 70 && hr < 130;
+            case School:
                 return hr > 60 && hr < 105;
-            case SchoolAge:
-                return hr > 60 && hr < 100;
             case Adolscent:
+            case Adult:
+            case Elderly:
                 return hr > 60 && hr < 100;
         }
-        // Throw exception invalid value
         return true;
     }
         
@@ -65,18 +69,19 @@ public class VitalSignChecker {
         int rr = vitalSigns.getRespiratoryRate();
         switch (ageGroup) {
             case Newborn:
-                return rr > 22 && rr < 34;
             case Infant:
-                return rr > 18 && rr < 30;
+                return rr > 30 && rr < 60;
             case Toddler:
+                return rr > 24 && rr < 40;
             case PreSchooler:
-                return rr > 12 && rr < 16;
-            case SchoolAge:
-                return rr > 12 && rr < 16;
+                return rr > 22 && rr < 34;
+            case School:
+                return rr > 18 && rr < 30;
+            case Adult:
             case Adolscent:
+            case Elderly:
                 return rr > 12 && rr < 16;
         }
-        // Throw exception invalid value
         return true;
     }
     
@@ -88,18 +93,20 @@ public class VitalSignChecker {
         float w = vitalSigns.getWeightInKilos();
         switch (ageGroup) {
             case Newborn:
-                return w > 12 && w < 15;
+                return w > 2 && w <= 5;
             case Infant:
-                return w > 15 && w < 20.5;
+                return w > 5 && w <= 10;
             case Toddler:
+                return w > 10 && w <= 20;
             case PreSchooler:
-                return w > 20.5 && w < 30;
-            case SchoolAge:
-                return w > 30 && w < 45;
+                return w > 20 && w <= 35;
+            case School:
+                return w > 35 && w <= 50;
             case Adolscent:
-                return w > 45 && w < 80;
+            case Adult:
+            case Elderly:
+                return w > 50 && w < 80;
         }
-        // Throw exception invalid value
         return true;
     }
 

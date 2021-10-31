@@ -49,29 +49,6 @@ public class Person {
         return ageGroup;
     }
 
-    private void setAgeGroup() {
-        Period period = Period.between(LocalDate.now(), this.dateOfBirth); 
-        int ageInMonths = Math.abs((period.getYears()*12) + Math.abs(period.getMonths()));
-        int ageInYears = ageInMonths / 12;
-        if (ageInMonths < 1) {
-            this.ageGroup = AgeGroup.Newborn;
-        } else if (ageInMonths >= 1 && ageInMonths <= 12) {
-            this.ageGroup = AgeGroup.Infant;
-
-        } else if (ageInYears >= 1 && ageInYears <= 3) {
-            this.ageGroup = AgeGroup.Toddler;
-
-        } else if (ageInYears >= 3 && ageInYears <= 5) {
-            this.ageGroup = AgeGroup.PreSchooler;
-
-        } else if (ageInYears >= 6 && ageInYears <= 12) {
-            this.ageGroup = AgeGroup.SchoolAge;
-
-        } else {
-            this.ageGroup = AgeGroup.Adolscent;
-        }
-    }
-
     public String getFirstName() {
         return firstName;
     }
@@ -102,5 +79,28 @@ public class Person {
 
     public void setDateOfBirth(LocalDate dateOfBirth) {
         this.dateOfBirth = dateOfBirth;
+    }
+    
+    
+    private void setAgeGroup() {
+        Period period = Period.between(LocalDate.now(), this.dateOfBirth); 
+        int ageInMonths = Math.abs((period.getYears()*12) + Math.abs(period.getMonths()));
+        int ageInYears = ageInMonths / 12;
+        if (ageInMonths < 1) {
+            this.ageGroup = AgeGroup.Newborn;
+        } else if (ageInMonths >= 1 && ageInMonths < 12) {
+            this.ageGroup = AgeGroup.Infant;
+
+        } else if (ageInYears >= 1 && ageInYears <= 3) {
+            this.ageGroup = AgeGroup.Toddler;
+
+        } else if (ageInYears > 3 && ageInYears <= 5) {
+            this.ageGroup = AgeGroup.PreSchooler;
+
+        } else if (ageInYears > 5 && ageInYears <= 12) {
+            this.ageGroup = AgeGroup.School;
+        } else if (ageInYears > 12 && ageInYears <= 17) {
+            this.ageGroup = AgeGroup.Adolscent;
+        }
     }
 }
