@@ -277,13 +277,18 @@ public class UpdatePatient extends javax.swing.JPanel {
 
     private void btnSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchActionPerformed
         int patientID = getID();
-        Patient patient1 = system.getPatientById(patientID);
-        txtFirstName.setText(String.valueOf( patient1.getFirstName()));
-        txtLastName.setText(String.valueOf( patient1.getLastName()));
-        txtDOB.setText(String.valueOf(patient1.getDateOfBirth().toString()));
-        comboBoxCommunity.setSelectedItem(patient1.getResidence().getCommunityName());
-        txtHouseNumber.setText(String.valueOf(patient1.getResidence().getHouseNumber()));
-        txtCity.setText(String.valueOf(patient1.getResidence().getCityName()));
+        Patient patientExisting = system.getPatientById(patientID);
+        txtFirstName.setText(String.valueOf( patientExisting.getFirstName()));
+        txtLastName.setText(String.valueOf( patientExisting.getLastName()));
+        txtDOB.setText(String.valueOf(patientExisting.getDateOfBirth().toString()));
+        comboBoxCommunity.setSelectedItem(patientExisting.getResidence().getCommunityName());
+        txtHouseNumber.setText(String.valueOf(patientExisting.getResidence().getHouseNumber()));
+        txtCity.setText(String.valueOf(patientExisting.getResidence().getCityName()));
+        
+        txtBP.setText(String.valueOf(patientExisting.getEncounterHistory().latestEncounter.getVitalSigns().getBloodPressure()));
+        txtHeartRate.setText(String.valueOf(patientExisting.getEncounterHistory().latestEncounter.getVitalSigns().getHeartRate()));
+        txtRespiratory.setText(String.valueOf(patientExisting.getEncounterHistory().latestEncounter.getVitalSigns().getRespiratoryRate()));
+        txtWeight.setText(String.valueOf(patientExisting.getEncounterHistory().latestEncounter.getVitalSigns().getWeightInKilos()));
         setCommunityName();
     }//GEN-LAST:event_btnSearchActionPerformed
 
@@ -342,7 +347,7 @@ public class UpdatePatient extends javax.swing.JPanel {
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
 
         int patientID = getID();
-        Patient patient1 = system.getPatientById(patientID);
+        Patient patientUpdate = system.getPatientById(patientID);
         
         validateForm();
         if (!txtDOB.getText().isEmpty()) {
@@ -361,7 +366,7 @@ public class UpdatePatient extends javax.swing.JPanel {
                 }
         }
         
-        if (patient1 != null) {
+        if (patientUpdate != null) {
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
             LocalDate localDate = LocalDate.parse(txtDOB.getText(), formatter);
             java.util.Date date=new java.util.Date(); 
@@ -375,28 +380,38 @@ public class UpdatePatient extends javax.swing.JPanel {
             
             House house = new House(houseNum, community, city);
             
-            patient1.setFirstName(firstName);
-            patient1.setLastName(lastName);
-            patient1.setDateOfBirth(dob);
-            patient1.setResidence(house);
+            patientUpdate.setFirstName(firstName);
+            patientUpdate.setLastName(lastName);
+            patientUpdate.setDateOfBirth(dob);
+            patientUpdate.setResidence(house);
         }
 
         Encounter encounter = null;
         VitalSigns vitals = new VitalSigns();
-        vitals.setSysBP(Integer.parseInt(txtBP.getText()));
-        if(txtRespiratory.getText() != null) {
+        if(!txtBP.getText().isEmpty()) {
+           vitals.setBloodPressure(Integer.parseInt(txtBP.getText())); 
+        } else {
+            vitals.setBloodPressure(Integer.parseInt(String.valueOf(patientUpdate.getEncounterHistory().latestEncounter.getVitalSigns().getBloodPressure())));
+        }
+        if(!txtRespiratory.getText().isEmpty()) {
            vitals.setRespiratoryRate(Integer.parseInt(txtRespiratory.getText())); 
+        } else {
+            vitals.setRespiratoryRate(Integer.parseInt(String.valueOf(patientUpdate.getEncounterHistory().latestEncounter.getVitalSigns().getRespiratoryRate())));
         }
-        if(txtHeartRate.getText() != null) {
-           vitals.setRespiratoryRate(Integer.parseInt(txtHeartRate.getText())); 
+        if(!txtHeartRate.getText().isEmpty()) {
+           vitals.setHeartRate(Integer.parseInt(txtHeartRate.getText())); 
+        } else {
+            vitals.setHeartRate(Integer.parseInt(String.valueOf(patientUpdate.getEncounterHistory().latestEncounter.getVitalSigns().getHeartRate())));
         }
-        if(txtWeight.getText() != null) {
-           vitals.setRespiratoryRate(Integer.parseInt(txtWeight.getText())); 
+        if(!txtWeight.getText().isEmpty()) {
+           vitals.setWeightInKilos(Float.parseFloat(txtWeight.getText())); 
+        } else {
+            vitals.setWeightInKilos(Float.parseFloat(String.valueOf(patientUpdate.getEncounterHistory().latestEncounter.getVitalSigns().getWeightInKilos())));
         }
         encounter = new Encounter(vitals);
         
         if(isFormValid) {
-            patient1.getEncounterHistory().recordEncounter(encounter);
+            patientUpdate.getEncounterHistory().recordEncounter(encounter);
             JOptionPane.showMessageDialog(this, "Vital info Updated");
             
             txtFirstName.setText("");

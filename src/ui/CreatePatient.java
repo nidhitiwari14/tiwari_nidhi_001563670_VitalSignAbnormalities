@@ -323,7 +323,7 @@ public class CreatePatient extends javax.swing.JPanel {
                     
         Encounter encounter = null;
         VitalSigns vitals = new VitalSigns();
-        vitals.setSysBP(Integer.parseInt(txtBP.getText()));
+        vitals.setBloodPressure(Integer.parseInt(txtBP.getText()));
         vitals.setRespiratoryRate(Integer.parseInt(txtRespiratory.getText()));
         vitals.setHeartRate(Integer.parseInt(txtHeartRate.getText()));
         vitals.setWeightInKilos(Float.parseFloat(txtWeight.getText()));

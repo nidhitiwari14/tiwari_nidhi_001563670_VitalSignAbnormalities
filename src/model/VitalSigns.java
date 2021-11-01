@@ -17,7 +17,7 @@ public class VitalSigns {
    
    private int respiratoryRate;
    private int heartRate;
-   private int sysBP;
+   private int bloodPressure;
    private float weightInKilos;
    private float weightInPounds;
    private Instant date;
@@ -38,12 +38,12 @@ public class VitalSigns {
         this.heartRate = heartRate;
     }
 
-    public int getSysBP() {
-        return sysBP;
+    public int getBloodPressure() {
+        return bloodPressure;
     }
 
-    public void setSysBP(int sysBP) {
-        this.sysBP = sysBP;
+    public void setBloodPressure(int bloodPressure) {
+        this.bloodPressure = bloodPressure;
     }
 
     public float getWeightInKilos() {

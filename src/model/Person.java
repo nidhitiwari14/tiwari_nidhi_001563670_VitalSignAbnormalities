@@ -98,9 +98,13 @@ public class Person {
             this.ageGroup = AgeGroup.PreSchooler;
 
         } else if (ageInYears > 5 && ageInYears <= 12) {
-            this.ageGroup = AgeGroup.School;
+            this.ageGroup = AgeGroup.SchoolAge;
         } else if (ageInYears > 12 && ageInYears <= 17) {
             this.ageGroup = AgeGroup.Adolscent;
+        } else if (ageInYears > 17 && ageInYears <= 40) {
+            this.ageGroup = AgeGroup.Adult;
+        } else {
+            this.ageGroup = AgeGroup.Elderly;
         }
     }
 }

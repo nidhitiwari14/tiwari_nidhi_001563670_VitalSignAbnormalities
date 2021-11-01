@@ -16,7 +16,7 @@ public class VitalSignChecker {
         EncounterHistory history = patient.getEncounterHistory();
         Encounter encounter = history.latestEncounter;
         VitalSigns vitalSigns = encounter.getVitalSigns();
-        int bp = vitalSigns.getSysBP();
+        int bp = vitalSigns.getBloodPressure();
         switch (ageGroup) {
             case Newborn:
                 return bp > 45 && bp < 90;
@@ -24,7 +24,7 @@ public class VitalSignChecker {
                 return bp > 80 && bp < 100;
             case Toddler:
             case PreSchooler:
-            case School:
+            case SchoolAge:
                 return bp > 80 && bp < 120;
             case Adolscent:
                 return bp > 90 && bp < 120;
@@ -51,7 +51,7 @@ public class VitalSignChecker {
                 return hr > 80 && hr < 140;
             case PreSchooler:
                 return hr > 70 && hr < 130;
-            case School:
+            case SchoolAge:
                 return hr > 60 && hr < 105;
             case Adolscent:
             case Adult:
@@ -75,7 +75,7 @@ public class VitalSignChecker {
                 return rr > 24 && rr < 40;
             case PreSchooler:
                 return rr > 22 && rr < 34;
-            case School:
+            case SchoolAge:
                 return rr > 18 && rr < 30;
             case Adult:
             case Adolscent:
@@ -100,7 +100,7 @@ public class VitalSignChecker {
                 return w > 10 && w <= 20;
             case PreSchooler:
                 return w > 20 && w <= 35;
-            case School:
+            case SchoolAge:
                 return w > 35 && w <= 50;
             case Adolscent:
             case Adult:

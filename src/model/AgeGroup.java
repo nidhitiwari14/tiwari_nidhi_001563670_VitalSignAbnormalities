@@ -14,7 +14,7 @@ public enum AgeGroup {
     Toddler,
     Infant,
     PreSchooler,
-    School,
+    SchoolAge,
     Adolscent,
     Adult,
     Elderly

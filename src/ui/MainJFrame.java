@@ -49,6 +49,9 @@ public class MainJFrame extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        btnAddDocVisit.setBackground(new java.awt.Color(0, 153, 255));
+        btnAddDocVisit.setFont(new java.awt.Font("Lucida Grande", 1, 14)); // NOI18N
+        btnAddDocVisit.setForeground(new java.awt.Color(255, 255, 255));
         btnAddDocVisit.setText("Add Doctor Visit");
         btnAddDocVisit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -56,6 +59,9 @@ public class MainJFrame extends javax.swing.JFrame {
             }
         });
 
+        btnViewCommunity.setBackground(new java.awt.Color(0, 153, 255));
+        btnViewCommunity.setFont(new java.awt.Font("Lucida Grande", 1, 14)); // NOI18N
+        btnViewCommunity.setForeground(new java.awt.Color(255, 255, 255));
         btnViewCommunity.setText("Community Health Assessment");
         btnViewCommunity.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -67,23 +73,29 @@ public class MainJFrame extends javax.swing.JFrame {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(btnAddDocVisit, javax.swing.GroupLayout.DEFAULT_SIZE, 195, Short.MAX_VALUE)
-                .addGap(41, 41, 41))
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(btnViewCommunity, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                .addContainerGap()
+                .addComponent(btnAddDocVisit, javax.swing.GroupLayout.PREFERRED_SIZE, 234, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnViewCommunity)
                 .addContainerGap())
         );
+
+        jPanel1Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {btnAddDocVisit, btnViewCommunity});
+
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(142, 142, 142)
-                .addComponent(btnAddDocVisit)
-                .addGap(44, 44, 44)
-                .addComponent(btnViewCommunity)
-                .addContainerGap(224, Short.MAX_VALUE))
+                .addGap(98, 98, 98)
+                .addComponent(btnAddDocVisit, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(80, 80, 80)
+                .addComponent(btnViewCommunity, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(170, Short.MAX_VALUE))
         );
+
+        jPanel1Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {btnAddDocVisit, btnViewCommunity});
 
         splitPane.setLeftComponent(jPanel1);
 
@@ -172,7 +184,7 @@ public class MainJFrame extends javax.swing.JFrame {
             "Kalpa", 
             dob, 
             "2051", 
-            "Dorchester",
+            "Beacon Hill",
             "Boston",  
             system.getPatientDirectory().size() + 1,
             system.getPersonDirectory().size() + 1
@@ -180,7 +192,7 @@ public class MainJFrame extends javax.swing.JFrame {
                     
         Encounter encounter = null;
         VitalSigns vitals = new VitalSigns();
-        vitals.setSysBP(Integer.parseInt("125"));
+        vitals.setBloodPressure(Integer.parseInt("125"));
         vitals.setRespiratoryRate(Integer.parseInt("17"));
         vitals.setHeartRate(Integer.parseInt("110"));
         vitals.setWeightInKilos(Float.parseFloat("90"));
@@ -196,7 +208,7 @@ public class MainJFrame extends javax.swing.JFrame {
         "Tyso", 
         dob2, 
         "1360", 
-        "Beacon Hill",
+        "Dorchester",
         "Boston",  
         system.getPatientDirectory().size() + 1,
         system.getPersonDirectory().size() + 1
@@ -204,7 +216,7 @@ public class MainJFrame extends javax.swing.JFrame {
 
         Encounter encounter2 = null;
         VitalSigns vitals2 = new VitalSigns();
-        vitals2.setSysBP(Integer.parseInt("130"));
+        vitals2.setBloodPressure(Integer.parseInt("130"));
         vitals2.setRespiratoryRate(Integer.parseInt("20"));
         vitals2.setHeartRate(Integer.parseInt("120"));
         vitals2.setWeightInKilos(Float.parseFloat("70"));
@@ -220,7 +232,7 @@ public class MainJFrame extends javax.swing.JFrame {
         "Royal", 
         dob3, 
         "1021", 
-        "Beacon Hill",
+        "Dorchester",
         "Boston",  
         system.getPatientDirectory().size() + 1,
         system.getPersonDirectory().size() + 1
@@ -228,7 +240,7 @@ public class MainJFrame extends javax.swing.JFrame {
 
         Encounter encounter3 = null;
         VitalSigns vitals3 = new VitalSigns();
-        vitals3.setSysBP(Integer.parseInt("100"));
+        vitals3.setBloodPressure(Integer.parseInt("100"));
         vitals3.setRespiratoryRate(Integer.parseInt("15"));
         vitals3.setHeartRate(Integer.parseInt("102"));
         vitals3.setWeightInKilos(Float.parseFloat("55"));
@@ -244,7 +256,7 @@ public class MainJFrame extends javax.swing.JFrame {
         "Sherman", 
         dob4, 
         "1125", 
-        "Dorchester",
+        "Beacon Hill",
         "Boston",  
         system.getPatientDirectory().size() + 1,
         system.getPersonDirectory().size() + 1
@@ -252,7 +264,7 @@ public class MainJFrame extends javax.swing.JFrame {
 
         Encounter encounter4 = null;
         VitalSigns vitals4 = new VitalSigns();
-        vitals4.setSysBP(Integer.parseInt("128"));
+        vitals4.setBloodPressure(Integer.parseInt("128"));
         vitals4.setRespiratoryRate(Integer.parseInt("17"));
         vitals4.setHeartRate(Integer.parseInt("115"));
         vitals4.setWeightInKilos(Float.parseFloat("68"));
@@ -268,7 +280,7 @@ public class MainJFrame extends javax.swing.JFrame {
         "Rich", 
         dob5, 
         "1205", 
-        "Beacon Hill",
+        "Dorchester",
         "Boston",  
         system.getPatientDirectory().size() + 1,
         system.getPersonDirectory().size() + 1
@@ -276,7 +288,7 @@ public class MainJFrame extends javax.swing.JFrame {
 
         Encounter encounter5 = null;
         VitalSigns vitals5 = new VitalSigns();
-        vitals5.setSysBP(Integer.parseInt("80"));
+        vitals5.setBloodPressure(Integer.parseInt("80"));
         vitals5.setRespiratoryRate(Integer.parseInt("15"));
         vitals5.setHeartRate(Integer.parseInt("70"));
         vitals5.setWeightInKilos(Float.parseFloat("21"));
@@ -284,6 +296,102 @@ public class MainJFrame extends javax.swing.JFrame {
         patient5.getEncounterHistory().recordEncounter(encounter5);
         
         system.addPatient(patient5);
+        
+        LocalDate localDate6 = LocalDate.parse("10/11/2011", formatter);
+        LocalDate dob6 = localDate6;
+        Patient patient6 = new Patient(
+        "Alexis", 
+        "Ray", 
+        dob6, 
+        "1202", 
+        "Dorchester",
+        "Boston",  
+        system.getPatientDirectory().size() + 1,
+        system.getPersonDirectory().size() + 1
+        );
+
+        Encounter encounter6 = null;
+        VitalSigns vitals6 = new VitalSigns();
+        vitals6.setBloodPressure(Integer.parseInt("95"));
+        vitals6.setRespiratoryRate(Integer.parseInt("15"));
+        vitals6.setHeartRate(Integer.parseInt("70"));
+        vitals6.setWeightInKilos(Float.parseFloat("55"));
+        encounter6 = new Encounter(vitals6);
+        patient6.getEncounterHistory().recordEncounter(encounter6);
+        
+        system.addPatient(patient6);
+        
+        LocalDate localDate7 = LocalDate.parse("10/11/2009", formatter);
+        LocalDate dob7 = localDate7;
+        Patient patient7 = new Patient(
+        "David", 
+        "Rosly", 
+        dob7, 
+        "1400", 
+        "Beacon Hill",
+        "Boston",  
+        system.getPatientDirectory().size() + 1,
+        system.getPersonDirectory().size() + 1
+        );
+
+        Encounter encounter7 = null;
+        VitalSigns vitals7 = new VitalSigns();
+        vitals7.setBloodPressure(Integer.parseInt("95"));
+        vitals7.setRespiratoryRate(Integer.parseInt("15"));
+        vitals7.setHeartRate(Integer.parseInt("70"));
+        vitals7.setWeightInKilos(Float.parseFloat("40"));
+        encounter7 = new Encounter(vitals7);
+        patient7.getEncounterHistory().recordEncounter(encounter7);
+        
+        system.addPatient(patient7);
+        
+        LocalDate localDate8 = LocalDate.parse("10/11/2017", formatter);
+        LocalDate dob8 = localDate8;
+        Patient patient8 = new Patient(
+        "Diana", 
+        "Pent", 
+        dob8, 
+        "1101", 
+        "Beacon Hill",
+        "Boston",  
+        system.getPatientDirectory().size() + 1,
+        system.getPersonDirectory().size() + 1
+        );
+
+        Encounter encounter8 = null;
+        VitalSigns vitals8 = new VitalSigns();
+        vitals8.setBloodPressure(Integer.parseInt("70"));
+        vitals8.setRespiratoryRate(Integer.parseInt("31"));
+        vitals8.setHeartRate(Integer.parseInt("100"));
+        vitals8.setWeightInKilos(Float.parseFloat("19"));
+        encounter8 = new Encounter(vitals8);
+        patient8.getEncounterHistory().recordEncounter(encounter8);
+        
+        system.addPatient(patient8);
+        
+        LocalDate localDate9 = LocalDate.parse("10/11/2005", formatter);
+        LocalDate dob9 = localDate9;
+        Patient patient9 = new Patient(
+        "Ravi", 
+        "Gyan", 
+        dob9, 
+        "3105", 
+        "Dorchester",
+        "Boston",  
+        system.getPatientDirectory().size() + 1,
+        system.getPersonDirectory().size() + 1
+        );
+
+        Encounter encounter9 = null;
+        VitalSigns vitals9 = new VitalSigns();
+        vitals9.setBloodPressure(Integer.parseInt("92"));
+        vitals9.setRespiratoryRate(Integer.parseInt("15"));
+        vitals9.setHeartRate(Integer.parseInt("90"));
+        vitals9.setWeightInKilos(Float.parseFloat("60"));
+        encounter9 = new Encounter(vitals9);
+        patient9.getEncounterHistory().recordEncounter(encounter8);
+        
+        system.addPatient(patient9);
     }
     
 

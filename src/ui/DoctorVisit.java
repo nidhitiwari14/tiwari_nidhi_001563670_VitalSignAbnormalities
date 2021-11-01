@@ -52,7 +52,7 @@ public class DoctorVisit extends javax.swing.JPanel {
         splitPane.setLeftComponent(jPanel1);
 
         btnCreateNewPatient.setBackground(new java.awt.Color(0, 153, 255));
-        btnCreateNewPatient.setFont(new java.awt.Font("Lucida Grande", 1, 14)); // NOI18N
+        btnCreateNewPatient.setFont(new java.awt.Font("Lucida Grande", 3, 14)); // NOI18N
         btnCreateNewPatient.setText("Create New Patient");
         btnCreateNewPatient.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -61,7 +61,7 @@ public class DoctorVisit extends javax.swing.JPanel {
         });
 
         btnUpdateExistingPatient.setBackground(new java.awt.Color(0, 153, 255));
-        btnUpdateExistingPatient.setFont(new java.awt.Font("Lucida Grande", 1, 14)); // NOI18N
+        btnUpdateExistingPatient.setFont(new java.awt.Font("Lucida Grande", 3, 14)); // NOI18N
         btnUpdateExistingPatient.setText("Update Existing Patient");
         btnUpdateExistingPatient.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
