@@ -384,14 +384,62 @@ public class MainJFrame extends javax.swing.JFrame {
 
         Encounter encounter9 = null;
         VitalSigns vitals9 = new VitalSigns();
-        vitals9.setBloodPressure(Integer.parseInt("92"));
+        vitals9.setBloodPressure(Integer.parseInt("88"));
         vitals9.setRespiratoryRate(Integer.parseInt("15"));
         vitals9.setHeartRate(Integer.parseInt("90"));
         vitals9.setWeightInKilos(Float.parseFloat("60"));
         encounter9 = new Encounter(vitals9);
-        patient9.getEncounterHistory().recordEncounter(encounter8);
+        patient9.getEncounterHistory().recordEncounter(encounter9);
         
         system.addPatient(patient9);
+        
+        LocalDate localDate10 = LocalDate.parse("10/11/1995", formatter);
+        LocalDate dob10 = localDate10;
+        Patient patient10 = new Patient(
+        "Gweth", 
+        "Mint", 
+        dob10, 
+        "211", 
+        "Charlestown",
+        "Boston",  
+        system.getPatientDirectory().size() + 1,
+        system.getPersonDirectory().size() + 1
+        );
+
+        Encounter encounter10 = null;
+        VitalSigns vitals10 = new VitalSigns();
+        vitals10.setBloodPressure(Integer.parseInt("96"));
+        vitals10.setRespiratoryRate(Integer.parseInt("15"));
+        vitals10.setHeartRate(Integer.parseInt("102"));
+        vitals10.setWeightInKilos(Float.parseFloat("90"));
+        encounter10 = new Encounter(vitals10);
+        patient10.getEncounterHistory().recordEncounter(encounter10);
+        
+        system.addPatient(patient10);
+        
+        LocalDate localDate11 = LocalDate.parse("10/11/1999", formatter);
+        LocalDate dob11 = localDate11;
+        Patient patient11 = new Patient(
+        "Jerry", 
+        "Kimsu", 
+        dob11, 
+        "410", 
+        "Charlestown",
+        "Boston",  
+        system.getPatientDirectory().size() + 1,
+        system.getPersonDirectory().size() + 1
+        );
+
+        Encounter encounter11 = null;
+        VitalSigns vitals11 = new VitalSigns();
+        vitals11.setBloodPressure(Integer.parseInt("94"));
+        vitals11.setRespiratoryRate(Integer.parseInt("16"));
+        vitals11.setHeartRate(Integer.parseInt("95"));
+        vitals11.setWeightInKilos(Float.parseFloat("85"));
+        encounter11 = new Encounter(vitals11);
+        patient11.getEncounterHistory().recordEncounter(encounter11);
+        
+        system.addPatient(patient11);
     }
     
 
