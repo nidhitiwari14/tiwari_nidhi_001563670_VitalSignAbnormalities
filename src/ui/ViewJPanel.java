@@ -45,8 +45,8 @@ public class ViewJPanel extends javax.swing.JPanel {
         btnAbnormalRespRate = new javax.swing.JButton();
         btnAbnormalHeartRate = new javax.swing.JButton();
         btnAbnormalWeight = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        lblView = new javax.swing.JLabel();
+        btnDeletePatient = new javax.swing.JButton();
 
         jButton2.setText("Abnormal Vital Heart Rate");
 
@@ -132,15 +132,15 @@ public class ViewJPanel extends javax.swing.JPanel {
             }
         });
 
-        jLabel1.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
-        jLabel1.setText("View Abnormal Vital Sign Per Community for Different Age Group");
+        lblView.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
+        lblView.setText("View Abnormal Vital Sign Per Community for Different Age Group");
 
-        jButton1.setBackground(new java.awt.Color(255, 51, 51));
-        jButton1.setForeground(new java.awt.Color(255, 255, 255));
-        jButton1.setText("Delete Patient");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnDeletePatient.setBackground(new java.awt.Color(255, 51, 51));
+        btnDeletePatient.setForeground(new java.awt.Color(255, 255, 255));
+        btnDeletePatient.setText("Delete Patient");
+        btnDeletePatient.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnDeletePatientActionPerformed(evt);
             }
         });
 
@@ -152,10 +152,10 @@ public class ViewJPanel extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(362, 362, 362)
-                        .addComponent(jLabel1))
+                        .addComponent(lblView))
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jButton1))
+                        .addComponent(btnDeletePatient))
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -180,11 +180,11 @@ public class ViewJPanel extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1)
+                .addComponent(lblView)
                 .addGap(45, 45, 45)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnDeletePatient, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(55, 55, 55)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnAbnormalBP, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -259,7 +259,7 @@ public class ViewJPanel extends javax.swing.JPanel {
         });
     }//GEN-LAST:event_btnAbnormalWeightActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void btnDeletePatientActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeletePatientActionPerformed
         
         int selectedRowIndex = tblViewPatientDetails.getSelectedRow();
         
@@ -275,7 +275,7 @@ public class ViewJPanel extends javax.swing.JPanel {
         JOptionPane.showMessageDialog(this, "Patient Record deleted"); 
         
         populateTable();
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_btnDeletePatientActionPerformed
 
     public void populateTable() {
     DefaultTableModel model = (DefaultTableModel) tblViewPatientDetails.getModel();
@@ -305,10 +305,10 @@ public class ViewJPanel extends javax.swing.JPanel {
     private javax.swing.JButton btnAbnormalHeartRate;
     private javax.swing.JButton btnAbnormalRespRate;
     private javax.swing.JButton btnAbnormalWeight;
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton btnDeletePatient;
     private javax.swing.JButton jButton2;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel lblView;
     private javax.swing.JScrollPane scrollAbnormal;
     private javax.swing.JTable tblAbnormal;
     private javax.swing.JTable tblViewPatientDetails;

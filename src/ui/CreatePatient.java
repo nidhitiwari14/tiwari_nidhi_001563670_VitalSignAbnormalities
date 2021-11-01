@@ -65,7 +65,6 @@ public class CreatePatient extends javax.swing.JPanel {
         lblFirstNameError = new javax.swing.JLabel();
         lblLastNameError = new javax.swing.JLabel();
         lblDOBError = new javax.swing.JLabel();
-        lblHouseNumberError = new javax.swing.JLabel();
         lblBPError = new javax.swing.JLabel();
         lblHeartRateError = new javax.swing.JLabel();
         lblRespiratoryError = new javax.swing.JLabel();
@@ -211,9 +210,7 @@ public class CreatePatient extends javax.swing.JPanel {
                                     .addComponent(lblWeightError, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(lblRespiratoryError, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addGroup(layout.createSequentialGroup()
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(lblLastNameError, javax.swing.GroupLayout.DEFAULT_SIZE, 10, Short.MAX_VALUE)
-                                            .addComponent(lblHouseNumberError, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                        .addComponent(lblLastNameError, javax.swing.GroupLayout.DEFAULT_SIZE, 10, Short.MAX_VALUE)
                                         .addGap(202, 202, 202))))
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -246,8 +243,7 @@ public class CreatePatient extends javax.swing.JPanel {
                 .addGap(21, 21, 21)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblHouseNumber)
-                    .addComponent(txtHouseNumber, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblHouseNumberError, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtHouseNumber, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(28, 28, 28)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lblCity)
@@ -544,7 +540,6 @@ public class CreatePatient extends javax.swing.JPanel {
     private javax.swing.JLabel lblHeartRate;
     private javax.swing.JLabel lblHeartRateError;
     private javax.swing.JLabel lblHouseNumber;
-    private javax.swing.JLabel lblHouseNumberError;
     private javax.swing.JLabel lblLastName;
     private javax.swing.JLabel lblLastNameError;
     private javax.swing.JLabel lblRespiratory;
